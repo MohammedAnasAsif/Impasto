@@ -7,6 +7,8 @@ Browse it like a shop, add to bag, check out for free, set it as your wallpaper 
 
 No accounts, no ads, no tracking, no compression.
 
+**[Download the latest release →](https://github.com/MohammedAnasAsif/Impasto/releases/latest)**
+
 | | Android | Windows |
 |---|---|---|
 | File | `Impasto-1.2.0.apk` | `Impasto-Setup-1.2.0.exe` (installer) · `Impasto-1.2.0-portable.exe` |
