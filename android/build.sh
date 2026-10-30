@@ -15,6 +15,7 @@ rm -rf "$B" && mkdir -p "$B/classes" "$B/assets" "$OUT"
 
 echo "› staging the store UI and phone wallpapers"
 node "$ROOT/tools/stage.mjs" "$B/assets/www" phone
+cp -r www/. "$B/assets/www/"   # Android keeps its own layout: styles.css and its fonts
 
 echo "› compiling Java"
 javac -nowarn -source 8 -target 8 -bootclasspath "$SDK" -classpath "$SDK" -d "$B/classes" $(find src -name '*.java') 2>&1 | grep -v "bootstrap class path\|^warning\|^1 warning\|source value 8\|target value 8\|To suppress" || true

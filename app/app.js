@@ -2,6 +2,7 @@
   'use strict';
   const cfg = window.IMPASTO_CONFIG;
   const N = window.Native;
+  const CLASSIC = N.platform === 'android'; // the APK keeps the earlier layout (android/www/styles.css)
   const main = document.getElementById('main');
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -121,6 +122,49 @@
     return [[left.collection, left], ['Featured', feat], [right.collection, right]].filter(([, w]) => w);
   }
 
+  function homeClassic(feat, cols, list) {
+    const v = vKey(feat, state.device);
+    return `
+    <section class="hero ${v}">
+      <div class="hero-copy">
+        <h1>Thick paint for thin screens.</h1>
+        <p class="lede">Original wallpapers in heavy oil texture, shipped as lossless PNG at your screen's native size. Free and open source.</p>
+        <div class="row"><a class="btn primary" href="#/w/${esc(feat.id)}">${icon('brush')}See ${esc(feat.title)}</a><a class="btn" href="#all">Browse all ${state.items.length}</a></div>
+      </div>
+      <a class="hero-art" href="#/w/${esc(feat.id)}" style="--bg:${esc(feat.variants[v].color)}">
+        <img src="${esc(previewUrl(feat, v))}" alt="${esc(feat.title)}, painted wallpaper" fetchpriority="high">
+        <span class="hero-tag"><b>${esc(feat.title)}</b><span>Free</span></span>
+      </a>
+    </section>
+
+    <section class="block">
+      <h2>Collections</h2>
+      <div class="shelves">${cols.map((c) => {
+        const ws = state.items.filter((w) => w.collection === c);
+        return `<a class="shelf" href="#/c/${encodeURIComponent(c)}">
+          <span class="fan">${ws.slice(0, 3).map((w) => `<img src="${esc(previewUrl(w, 'phone'))}" alt="" loading="lazy">`).join('')}</span>
+          <span class="shelf-text"><b>${esc(c)}</b><span>${esc(COLLECTIONS[c] || '')}</span><span class="muted">${ws.length} wallpapers</span></span>
+        </a>`;
+      }).join('')}</div>
+    </section>
+
+    <section class="block" id="all">
+      <div class="block-head">
+        <h2>All wallpapers</h2>
+        <div class="filters">
+          <div class="chips" role="group" aria-label="Filter by collection">${['All', ...cols].map((c) => `<button class="chip" data-filter="${esc(c)}" aria-pressed="${state.filter === c}">${esc(c)}</button>`).join('')}</div>
+          <label class="select"><span class="sr">Sort</span><select id="sort">
+            <option value="featured"${state.sort === 'featured' ? ' selected' : ''}>Featured</option>
+            <option value="new"${state.sort === 'new' ? ' selected' : ''}>Newest</option>
+            <option value="az"${state.sort === 'az' ? ' selected' : ''}>A to Z</option>
+          </select></label>
+        </div>
+      </div>
+      ${list.length ? grid(list) : empty('Nothing here yet', 'This collection is empty.', '', '')}
+    </section>
+    ${footer()}`;
+  }
+
   function viewHome() {
     const feat = byId(state.featured) || state.items[0];
     // known collections first, then any new ones the catalog brings
@@ -128,6 +172,7 @@
     let list = state.items.filter((w) => state.filter === 'All' || w.collection === state.filter);
     if (state.sort === 'az') list = [...list].sort((a, b) => a.title.localeCompare(b.title));
     if (state.sort === 'new') list = [...list].reverse();
+    if (CLASSIC) return homeClassic(feat, cols, list);
     return `
     <section class="hero" aria-labelledby="heroTitle">
       <div class="beam" aria-hidden="true"></div>
@@ -184,7 +229,7 @@
 
   function footer() {
     return `<footer class="foot">
-      <p class="foot-name">Imp<em>asto</em></p>
+      <p class="foot-name">${CLASSIC ? 'Impasto' : 'Imp<em>asto</em>'}</p>
       <p class="muted">Open source under MIT. Wallpapers in the starter pack are CC0, painted by code in <code>tools/paint.py</code>. ${N.platform === 'web' ? '' : `You are on the ${N.platform === 'android' ? 'Android' : 'Windows'} app, v${esc(cfg.version)}.`}</p>
       <div class="row"><a class="btn" href="#/about">About and sources</a></div>
     </footer>`;
