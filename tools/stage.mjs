@@ -20,12 +20,13 @@ cpSync(join(root, 'app'), out, { recursive: true });
 const cat = JSON.parse(readFileSync(join(root, 'catalog', 'catalog.json'), 'utf8'));
 for (const w of cat.wallpapers) {
   for (const [v, x] of Object.entries(w.variants)) {
-    for (const key of bundle.has(v) ? ['preview', 'file'] : ['preview']) {
+    const full = bundle.has(v) && w.bundle !== false; // bundle:false = online-only full file
+    for (const key of full ? ['preview', 'file'] : ['preview']) {
       const dst = join(out, 'catalog', x[key]);
       mkdirSync(dirname(dst), { recursive: true });
       cpSync(join(root, 'catalog', x[key]), dst);
     }
-    x.bundled = bundle.has(v);
+    x.bundled = full;
   }
 }
 writeFileSync(join(out, 'catalog', 'catalog.json'), JSON.stringify(cat, null, 1));

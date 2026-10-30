@@ -6,5 +6,5 @@ window.IMPASTO_CONFIG = {
   localBase: 'catalog/',
   remoteBase: 'https://raw.githubusercontent.com/MohammedAnasAsif/Impasto/main/catalog/',
   repoUrl: 'https://github.com/MohammedAnasAsif/Impasto',
-  version: '1.1.0',
+  version: '1.2.0',
 };

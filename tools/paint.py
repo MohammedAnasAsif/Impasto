@@ -628,7 +628,8 @@ def main(only):
         old[wid] = dict(id=wid, title=spec["title"], collection=spec["collection"], tags=spec["tags"],
                         artist="Impasto", license="CC0-1.0", format="PNG (lossless)", variants=files)
     order = [s["id"] for s in WALLPAPERS]
-    cat = dict(name="Impasto Starter Pack", version=1,
+    cat = {**(json.loads(cat_path.read_text()) if cat_path.exists() else {}), "name": "Impasto", "version": 1}  # keep "featured" etc.
+    cat.update(
                wallpapers=sorted(old.values(), key=lambda w: order.index(w["id"]) if w["id"] in order else 999))
     cat_path.write_text(json.dumps(cat, indent=2))
 

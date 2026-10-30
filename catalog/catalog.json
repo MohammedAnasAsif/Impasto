@@ -3,6 +3,248 @@
   "version": 1,
   "wallpapers": [
     {
+      "id": "g06",
+      "title": "Money Brain",
+      "collection": "Delusional",
+      "tags": [
+        "money",
+        "blue",
+        "surreal"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g06/desktop.png",
+          "preview": "wallpapers/g06/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 11146475,
+          "sha256": "461e8aa0d2e57ffd5d2c02ceb45f2152d4d869c299091fef6073ff2188333128",
+          "color": "#3669a8"
+        },
+        "phone": {
+          "file": "wallpapers/g06/phone.png",
+          "preview": "wallpapers/g06/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 6219575,
+          "sha256": "fd37f294e914b93213545ebdfa0cfe064a1fa9c920952b2b99e6cc8a0f1e2741",
+          "color": "#355e81"
+        }
+      }
+    },
+    {
+      "id": "g07",
+      "title": "Hush Money",
+      "collection": "Savage",
+      "tags": [
+        "monkeys",
+        "money",
+        "red",
+        "painted"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g07/desktop.png",
+          "preview": "wallpapers/g07/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 11394220,
+          "sha256": "2b65b25c6ae0975ffaa529346529705ec6ff3cbc4b3444aad6de3c5ac0b161fb",
+          "color": "#bf452c"
+        },
+        "phone": {
+          "file": "wallpapers/g07/phone.png",
+          "preview": "wallpapers/g07/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 6790492,
+          "sha256": "2eb7b637b1836bda26f3be8bf416eb754bedef82dca7ba55f18d83abaaba2493",
+          "color": "#c84128"
+        }
+      }
+    },
+    {
+      "id": "g05",
+      "title": "Pay Your Bills",
+      "collection": "Savage",
+      "tags": [
+        "receipt",
+        "type",
+        "black",
+        "explicit"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g05/desktop.png",
+          "preview": "wallpapers/g05/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 9213564,
+          "sha256": "a00c7b97f5f086e88fa71513838ba6a1d982f0b0fc7856a0e756a3498c474742",
+          "color": "#645c54"
+        },
+        "phone": {
+          "file": "wallpapers/g05/phone.png",
+          "preview": "wallpapers/g05/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5531713,
+          "sha256": "cb8b0721cf1cb5e05cbaec89d40f698eb037288ea1f28eb476aa4240ae3dd610",
+          "color": "#2d2925"
+        }
+      }
+    },
+    {
+      "id": "g01",
+      "title": "Vitamin Money",
+      "collection": "Delusional",
+      "tags": [
+        "type",
+        "money",
+        "serif"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g01/desktop.png",
+          "preview": "wallpapers/g01/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 9827458,
+          "sha256": "8c7cc43e0eab41f18f3b9ee4cf7d0749434cec0f16304b43eb2c70ecfd8824f6",
+          "color": "#eadbc2"
+        },
+        "phone": {
+          "file": "wallpapers/g01/phone.png",
+          "preview": "wallpapers/g01/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 7158801,
+          "sha256": "72be5eda82fcd010fc0f98d579ea5464fb1b50ad14a8b77c9fddf02199ab58e0",
+          "color": "#edd8b9"
+        }
+      }
+    },
+    {
+      "id": "g04",
+      "title": "Supra Fund",
+      "collection": "Delusional",
+      "tags": [
+        "car",
+        "money",
+        "type"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g04/desktop.png",
+          "preview": "wallpapers/g04/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 10040458,
+          "sha256": "356bb8f71785a9b93220e9b4bd3a1903f0b4a383804b66a4ec121512ac74eff0",
+          "color": "#d4c9b8"
+        },
+        "phone": {
+          "file": "wallpapers/g04/phone.png",
+          "preview": "wallpapers/g04/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 6553548,
+          "sha256": "3c5d927ea33fcaf85b4eea436b8a3c8c61276aa2813a5677393371321fd15aab",
+          "color": "#d9cbb7"
+        }
+      }
+    },
+    {
+      "id": "g02",
+      "title": "The High Table",
+      "collection": "Cinema",
+      "tags": [
+        "casino",
+        "red",
+        "night",
+        "scene"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g02/desktop.png",
+          "preview": "wallpapers/g02/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8517138,
+          "sha256": "8a5b0197e47f86d0d8a330151e3865ddc5557ccdb6441cb0f699ce3e2b753020",
+          "color": "#411004"
+        },
+        "phone": {
+          "file": "wallpapers/g02/phone.png",
+          "preview": "wallpapers/g02/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5462631,
+          "sha256": "7bf5a2a64a693a46052f9dda90965d1809ed878e23c6de618a0cc148fcef3e09",
+          "color": "#561204"
+        }
+      }
+    },
+    {
+      "id": "g03",
+      "title": "Royal Crest",
+      "collection": "Fields",
+      "tags": [
+        "velvet",
+        "gold",
+        "black",
+        "lion"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g03/desktop.png",
+          "preview": "wallpapers/g03/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 10336804,
+          "sha256": "5649172ce2fa0bab01403bf64950e4e8f4161f86c9fae0ebc310ab821d50a7e2",
+          "color": "#28201b"
+        },
+        "phone": {
+          "file": "wallpapers/g03/phone.png",
+          "preview": "wallpapers/g03/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5784743,
+          "sha256": "7c3eff14fc336e2e77321de55bc159e901da42e0470bcad014aa6616545ca333",
+          "color": "#241c17"
+        }
+      }
+    },
+    {
       "id": "s01",
       "title": "Unbothered",
       "collection": "Savage",
@@ -762,5 +1004,6 @@
         }
       }
     }
-  ]
+  ],
+  "featured": "g06"
 }

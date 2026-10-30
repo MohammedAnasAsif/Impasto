@@ -7,3 +7,5 @@ android/keystore/
 .playwright-cli/
 .taste-skill/
 __pycache__/
+*.pth
+*.onnx

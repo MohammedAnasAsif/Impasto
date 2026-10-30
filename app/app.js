@@ -47,12 +47,14 @@
   }
   async function loadCatalog() {
     const local = await (await fetch(cfg.localBase + 'catalog.json')).json();
+    state.featured = local.featured;
     const items = local.wallpapers.filter(validItem).map((w) => ({ ...w, _base: cfg.localBase }));
     if (state.remote) {
       try {
         const ctl = new AbortController();
         const t = setTimeout(() => ctl.abort(), 7000);
         const remote = await (await fetch(state.remote + 'catalog.json', { signal: ctl.signal, cache: 'no-cache' })).json();
+        if (typeof remote.featured === 'string') state.featured = remote.featured;
         clearTimeout(t);
         const have = new Set(items.map((w) => w.id));
         for (const w of remote.wallpapers || []) if (validItem(w) && !have.has(w.id)) items.push({ ...w, _base: state.remote, _remote: true });
@@ -112,9 +114,10 @@
 
   // ---------- views ----------
   function viewHome() {
-    const feat = byId('s03') || state.items[0];
+    const feat = byId(state.featured) || state.items[0];
     const v = vKey(feat, state.device);
-    const cols = Object.keys(COLLECTIONS).filter((c) => state.items.some((w) => w.collection === c));
+    // known collections first, then any new ones the catalog brings
+    const cols = [...new Set([...Object.keys(COLLECTIONS), ...state.items.map((w) => w.collection)])].filter((c) => c && state.items.some((w) => w.collection === c));
     let list = state.items.filter((w) => state.filter === 'All' || w.collection === state.filter);
     if (state.sort === 'az') list = [...list].sort((a, b) => a.title.localeCompare(b.title));
     if (state.sort === 'new') list = [...list].reverse();
@@ -137,7 +140,7 @@
         const ws = state.items.filter((w) => w.collection === c);
         return `<a class="shelf" href="#/c/${encodeURIComponent(c)}">
           <span class="fan">${ws.slice(0, 3).map((w) => `<img src="${esc(previewUrl(w, 'phone'))}" alt="" loading="lazy">`).join('')}</span>
-          <span class="shelf-text"><b>${esc(c)}</b><span>${esc(COLLECTIONS[c])}</span><span class="muted">${ws.length} wallpapers</span></span>
+          <span class="shelf-text"><b>${esc(c)}</b><span>${esc(COLLECTIONS[c] || '')}</span><span class="muted">${ws.length} wallpapers</span></span>
         </a>`;
       }).join('')}</div>
     </section>

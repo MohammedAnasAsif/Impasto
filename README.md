@@ -9,7 +9,7 @@ No accounts, no ads, no tracking, no compression.
 
 | | Android | Windows |
 |---|---|---|
-| File | `Impasto-1.1.0.apk` | `Impasto-Setup-1.1.0.exe` (installer) · `Impasto-1.1.0-portable.exe` |
+| File | `Impasto-1.2.0.apk` | `Impasto-Setup-1.2.0.exe` (installer) · `Impasto-1.2.0-portable.exe` |
 | Needs | Android 10 or newer | Windows 10 or 11, 64-bit |
 | Set wallpaper | Home, lock or both | Desktop (Fill) |
 | Saves to | `Pictures/Impasto` | `Pictures\Impasto` |
@@ -45,9 +45,24 @@ Users can point the app at a different catalog in **About → Catalog source**.
 4. Run `node tools/check-catalog.mjs`, then open a pull request.
 
 **What gets merged:** original work you made or have the right to share. No photos or likenesses of
-real people (actors, athletes, musicians), no movie or TV stills, posters or characters, no brand
-logos, and no lyrics or film quotes. Mood is fine: a "Cinema" wallpaper can feel like a film still
+real people (actors, athletes, musicians), no movie or TV stills, posters or characters, no lyrics
+or film quotes, and no brand logo used as the design itself (a real car or product shown as itself
+is fine). Mood is fine: a "Cinema" wallpaper can feel like a film still
 without being one.
+
+**Made it with an image AI (ChatGPT, Midjourney…)?** Those come out around 1600 px, so let the tool
+upscale and size them. It runs Real-ESRGAN's compact model on the CPU, no GPU or PyTorch needed:
+
+```bash
+pip install numpy pillow onnx onnxruntime
+curl -LO https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-x4v3.pth
+cd tools && python3 add_wallpaper.py --weights ../realesr-general-x4v3.pth \
+  --id g08 --title "My Wallpaper" --collection Savage --tags money,red --artist "Your Name" \
+  --desktop wide.png --phone tall.png --phone-fit crop     # or --phone-fit pad to extend top/bottom
+```
+
+It writes both PNGs, the previews and the catalog entry. Set `"featured"` in `catalog.json` to the
+id that should lead the home page; installed apps pick it up on their next launch.
 
 To repaint or extend the starter pack: `pip install numpy scipy pillow && python3 tools/paint.py`.
 
@@ -57,7 +72,7 @@ To repaint or extend the starter pack: `pip install numpy scipy pillow && python
 
 ```bash
 sudo apt-get install aapt zipalign apksigner dalvik-exchange android-sdk-platform-23 openjdk-17-jdk nodejs
-bash android/build.sh                 # → dist/Impasto-1.1.0.apk
+bash android/build.sh                 # → dist/Impasto-1.2.0.apk
 ```
 
 Without signing variables the script creates `android/keystore/impasto-local.jks`. **Back it up**:
@@ -70,7 +85,7 @@ Android only installs updates signed with the same key. For releases, set `KEYST
 cd desktop
 npm ci
 npm start           # run it
-npm run dist:win    # → dist/Impasto-Setup-1.1.0.exe and dist/Impasto-1.1.0-portable.exe
+npm run dist:win    # → dist/Impasto-Setup-1.2.0.exe and dist/Impasto-1.2.0-portable.exe
 ```
 
 **Both, automatically:** push a tag like `v1.0.1`. `.github/workflows/release.yml` builds the APK on
