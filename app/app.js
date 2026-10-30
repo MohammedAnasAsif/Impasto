@@ -495,10 +495,7 @@
     updateDeviceSeg();
     updateCounts();
     document.documentElement.dataset.platform = N.platform;
-    const dark = matchMedia('(prefers-color-scheme: dark)');
-    const chrome = () => N.setChrome(getComputedStyle(document.body).backgroundColor, !dark.matches);
-    chrome();
-    dark.addEventListener?.('change', chrome);
+    N.setChrome(getComputedStyle(document.body).backgroundColor, false); // dark ground: light status-bar icons
     try {
       await loadCatalog();
       route();

@@ -72,7 +72,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1440, height: 920, minWidth: 380, minHeight: 600,
     title: 'Impasto',
-    backgroundColor: nativeTheme.shouldUseDarkColors ? '#13110f' : '#f3efe7',
+    backgroundColor: '#090b11',
     autoHideMenuBar: true,
     icon: path.join(__dirname, 'build', 'icon.png'),
     webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, sandbox: true, nodeIntegration: false, spellcheck: false },

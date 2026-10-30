@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ground">#13110f</color>
+    <color name="ground">#090b11</color>
     <style name="Impasto" parent="android:Theme.Material.NoActionBar">
         <item name="android:windowBackground">@color/ground</item>
         <item name="android:statusBarColor">@color/ground</item>
         <item name="android:navigationBarColor">@color/ground</item>
-        <item name="android:colorAccent">#ff6a45</item>
+        <item name="android:colorAccent">#1f5eff</item>
     </style>
 </resources>
