@@ -142,7 +142,7 @@
           <div><dt>Desktop</dt><dd>4K</dd></div>
           <div><dt>Phone</dt><dd>QHD+</dd></div>
         </dl>
-        <a class="orb" href="#all"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 20c0-7 6-13 13-13 5 0 9 3 9 7 0 3-2 5-5 5-2 0-3 1-3 3s-2 4-5 4c-5 0-9-2-9-6Z"/><circle cx="12" cy="17" r="2.2"/><circle cx="18" cy="12.5" r="1.8"/></svg><span>Browse</span></a>
+        <a class="orb" href="#all"><img class="mark" src="mark.svg" alt=""><span>Browse</span></a>
       </div>
       <div class="hero-cards">${heroCards(feat).map(([label, w], i) => {
         const hv = vKey(w, state.device);

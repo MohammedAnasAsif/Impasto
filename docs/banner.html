@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: S; src: url(../app/fonts/instrument-serif-latin-400-normal.woff2); }
+@font-face { font-family: S; font-style: italic; src: url(../app/fonts/instrument-serif-latin-400-italic.woff2); }
+@font-face { font-family: M; src: url(../app/fonts/jetbrains-mono-latin-400-normal.woff2); }
+html, body { margin: 0; width: 1600px; height: 560px; overflow: hidden; background: transparent; }
+.b { position: relative; width: 1600px; height: 560px; border-radius: 36px; overflow: hidden; color: #eef1f8; display: grid; place-items: center; text-align: center;
+  background: radial-gradient(24% 40% at 50% 112%, #fff0e0 0%, #ffb486 24%, rgb(255 140 80 / .6) 48%, transparent 78%),
+              radial-gradient(34% 95% at 50% 100%, #4a80ff 0%, #2258ea 30%, rgb(22 56 170 / .65) 55%, transparent 82%),
+              radial-gradient(85% 70% at 50% 110%, rgb(31 79 216 / .55), transparent 75%), linear-gradient(180deg, #06070c, #0a1230); }
+.b::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgb(255 255 255 / .16) 0 1px, transparent 1px 5px, rgb(255 255 255 / .07) 5px 6px, transparent 6px 10px);
+  -webkit-mask: radial-gradient(40% 90% at 50% 100%, #000 25%, transparent 78%); mix-blend-mode: overlay; }
+.in { position: relative; display: grid; justify-items: center; gap: 18px; transform: translateY(-14px); }
+.row { display: flex; align-items: center; gap: 30px; }
+.row img { height: 170px; width: auto; margin-top: -10px; filter: drop-shadow(0 16px 40px rgb(0 0 0 / .5)); }
+h1 { margin: 0; font: 400 168px/1 S; letter-spacing: -0.02em; }
+h1 em { font-style: italic; }
+p { margin: 0; font: 400 25px/1.4 M; color: rgb(238 241 248 / .85); }
+p b { color: #ffa472; font-weight: 400; }
+</style></head><body><div class="b"><div class="in">
+<div class="row"><img class="m" src="mark.svg" alt=""><h1>Imp<em>asto</em></h1></div>
+<p>Thick paint for thin screens · <b>lossless</b> wallpapers for Android &amp; Windows</p>
+</div></div></body></html>

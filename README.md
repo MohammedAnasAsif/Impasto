@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/banner.png" alt="Impasto: thick paint for thin screens. Lossless wallpapers for Android and Windows." width="100%"></p>
+
 # Impasto
 
 An open-source wallpaper store for **Android** and **Windows**. Thick oil-paint wallpapers, shipped as
@@ -11,7 +13,7 @@ No accounts, no ads, no tracking, no compression.
 
 | | Android | Windows |
 |---|---|---|
-| File | `Impasto-1.2.0.apk` | `Impasto-Setup-1.2.0.exe` (installer) · `Impasto-1.2.0-portable.exe` |
+| File | `Impasto-<version>.apk` | `Impasto-Setup-<version>.exe` (installer) · `Impasto-<version>-portable.exe` |
 | Needs | Android 10 or newer | Windows 10 or 11, 64-bit |
 | Set wallpaper | Home, lock or both | Desktop (Fill) |
 | Saves to | `Pictures/Impasto` | `Pictures\Impasto` |
@@ -74,7 +76,7 @@ To repaint or extend the starter pack: `pip install numpy scipy pillow && python
 
 ```bash
 sudo apt-get install aapt zipalign apksigner dalvik-exchange android-sdk-platform-23 openjdk-17-jdk nodejs
-bash android/build.sh                 # → dist/Impasto-1.2.0.apk
+bash android/build.sh                 # → dist/Impasto-<version>.apk
 ```
 
 Without signing variables the script creates `android/keystore/impasto-local.jks`. **Back it up**:
@@ -87,7 +89,7 @@ Android only installs updates signed with the same key. For releases, set `KEYST
 cd desktop
 npm ci
 npm start           # run it
-npm run dist:win    # → dist/Impasto-Setup-1.2.0.exe and dist/Impasto-1.2.0-portable.exe
+npm run dist:win    # → dist/Impasto-Setup-<version>.exe and dist/Impasto-<version>-portable.exe
 ```
 
 **Both, automatically:** push a tag like `v1.3.0` (or publish a release with that tag on GitHub).
