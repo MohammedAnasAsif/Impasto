@@ -201,6 +201,172 @@
       }
     },
     {
+      "id": "s07",
+      "title": "Non-Refundable",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "receipt",
+        "time"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s07/phone.png",
+          "preview": "wallpapers/s07/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 3366699,
+          "sha256": "d0becfcf16f42c8eb67eac6bb11ff690d98a6c12f6ec7846545f2cc5390e123b",
+          "color": "#cfcbc0"
+        },
+        "desktop": {
+          "file": "wallpapers/s07/desktop.png",
+          "preview": "wallpapers/s07/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 6401752,
+          "sha256": "9db16db61281efade3f6ec074462a62b5f1df52f62aa1f69841f87abf0dcc1bd",
+          "color": "#c8c3b9"
+        }
+      }
+    },
+    {
+      "id": "s08",
+      "title": "Self-Made*",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "serif",
+        "money"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s08/phone.png",
+          "preview": "wallpapers/s08/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5294460,
+          "sha256": "398b5ea618cd71e62630d92fed23192b256fe819769144141412c39bc59a2c77",
+          "color": "#dbd4c4"
+        },
+        "desktop": {
+          "file": "wallpapers/s08/desktop.png",
+          "preview": "wallpapers/s08/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 9067184,
+          "sha256": "6bd13fdc3204734e33a2560401a082bb3bfcf4ab6ca16baa60f041d37ed0a730",
+          "color": "#d8d1c2"
+        }
+      }
+    },
+    {
+      "id": "s09",
+      "title": "One Day",
+      "collection": "Savage",
+      "tags": [
+        "car",
+        "red",
+        "money"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s09/phone.png",
+          "preview": "wallpapers/s09/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5582102,
+          "sha256": "7186d7a0ebb7ad645126573c26ad57d3595d0a83504870c51be79858c2af8a65",
+          "color": "#d5cbbf"
+        },
+        "desktop": {
+          "file": "wallpapers/s09/desktop.png",
+          "preview": "wallpapers/s09/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 9509446,
+          "sha256": "c579f2c9aab25c6a74a5bd6066bb33dbb4a15639b4f10d5512babe80d395ae88",
+          "color": "#d6cbc0"
+        }
+      }
+    },
+    {
+      "id": "s10",
+      "title": "Forecast: Money",
+      "collection": "Savage",
+      "tags": [
+        "money",
+        "blue",
+        "playful"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s10/phone.png",
+          "preview": "wallpapers/s10/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 6293004,
+          "sha256": "18fb96c11a768c26106054455958dd49c2c9acb698c5edf69c8e2e629eb0c91d",
+          "color": "#4775b7"
+        },
+        "desktop": {
+          "file": "wallpapers/s10/desktop.png",
+          "preview": "wallpapers/s10/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 11300900,
+          "sha256": "432af321eefc5e2215986844d8259591474401f5d7c6580701adfa49b5d5b7db",
+          "color": "#4b78b6"
+        }
+      }
+    },
+    {
+      "id": "c03",
+      "title": "Corner Office",
+      "collection": "Cinema",
+      "tags": [
+        "suit",
+        "city",
+        "night",
+        "boss"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/c03/phone.png",
+          "preview": "wallpapers/c03/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5461910,
+          "sha256": "7789f578c0b91acf1cdb43040bbd875ac3966885f663295e20f1cf933922ee57",
+          "color": "#433335"
+        },
+        "desktop": {
+          "file": "wallpapers/c03/desktop.png",
+          "preview": "wallpapers/c03/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8788216,
+          "sha256": "0c8adedc96040eb6f15017178057ae5708b0213543db50a39b5e1b115d67a947",
+          "color": "#4c3736"
+        }
+      }
+    },
+    {
       "id": "c01",
       "title": "Night Drive",
       "collection": "Cinema",
