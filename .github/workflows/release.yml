@@ -1,8 +1,9 @@
 name: Build apps
 
+# Publish a release on GitHub with a tag like v1.3.0 and this builds both apps and attaches them.
 on:
-  push:
-    tags: ['v*']
+  release:
+    types: [published]
   workflow_dispatch:
 
 permissions:
@@ -26,6 +27,9 @@ jobs:
           sudo apt-get install -y aapt zipalign apksigner dalvik-exchange android-sdk-platform-23
       - name: Check catalog
         run: node tools/check-catalog.mjs
+      - name: Take the version from the release tag
+        if: github.event_name == 'release'
+        run: node tools/set-version.mjs "${{ github.ref_name }}"
       - name: Restore release key
         if: env.HAS_KEY == 'true'
         env:
@@ -46,6 +50,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - name: Take the version from the release tag
+        if: github.event_name == 'release'
+        run: node tools/set-version.mjs "${{ github.ref_name }}"
       - name: Build installer and portable exe
         working-directory: desktop
         run: |
@@ -55,11 +62,13 @@ jobs:
         with: { name: windows, path: dist/*.exe }
 
   release:
-    if: startsWith(github.ref, 'refs/tags/')
+    if: github.event_name == 'release'
     needs: [android, windows]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/download-artifact@v4
         with: { path: out, merge-multiple: true }
+      - name: Checksums
+        run: cd out && sha256sum * > SHA256SUMS.txt
       - uses: softprops/action-gh-release@v2
         with: { files: out/* }
