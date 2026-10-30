@@ -4,7 +4,7 @@
 // installed app without an update. Set this after you publish the repo (see README).
 window.IMPASTO_CONFIG = {
   localBase: 'catalog/',
-  remoteBase: '', // e.g. 'https://raw.githubusercontent.com/<you>/impasto/main/catalog/'
-  repoUrl: '', // e.g. 'https://github.com/<you>/impasto'
-  version: '1.0.0',
+  remoteBase: 'https://raw.githubusercontent.com/MohammedAnasAsif/Impasto/main/catalog/',
+  repoUrl: 'https://github.com/MohammedAnasAsif/Impasto',
+  version: '1.1.0',
 };

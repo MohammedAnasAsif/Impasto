@@ -2,13 +2,14 @@
 
 An open-source wallpaper store for **Android** and **Windows**. Thick oil-paint wallpapers, shipped as
 **lossless PNG at each screen's native size**: 1440 × 3200 for phones, 3840 × 2160 for desktops.
+Collections: Savage, Delusional, Quiet, Painted, Fields and Cinema.
 Browse it like a shop, add to bag, check out for free, set it as your wallpaper in one tap.
 
 No accounts, no ads, no tracking, no compression.
 
 | | Android | Windows |
 |---|---|---|
-| File | `Impasto-1.0.0.apk` | `Impasto-Setup-1.0.0.exe` (installer) · `Impasto-1.0.0-portable.exe` |
+| File | `Impasto-1.1.0.apk` | `Impasto-Setup-1.1.0.exe` (installer) · `Impasto-1.1.0-portable.exe` |
 | Needs | Android 10 or newer | Windows 10 or 11, 64-bit |
 | Set wallpaper | Home, lock or both | Desktop (Fill) |
 | Saves to | `Pictures/Impasto` | `Pictures\Impasto` |
@@ -29,16 +30,10 @@ fetched from the **catalog source** when you ask for it.
 
 ## The catalog source (important)
 
-The apps can read a remote `catalog.json`, so new wallpapers reach every installed copy without an app
-update. After you push this repo to GitHub, set the source in `app/config.js`:
-
-```js
-remoteBase: 'https://raw.githubusercontent.com/<you>/impasto/main/catalog/',
-repoUrl: 'https://github.com/<you>/impasto',
-```
-
-Users can also change it in **About → Catalog source**. Until a source is set, the Android app offers
-desktop sizes as "not bundled" and the Windows app does the same for phone sizes.
+The apps read `catalog/catalog.json` from this repo's `main` branch
+(`remoteBase` in `app/config.js`), so a wallpaper merged here reaches every installed copy on its next
+launch, without an app update. The same source supplies the sizes an app doesn't bundle.
+Users can point the app at a different catalog in **About → Catalog source**.
 
 ## Adding wallpapers
 
@@ -47,7 +42,12 @@ desktop sizes as "not bundled" and the Windows app does the same for phone sizes
 2. Add a `phone-preview.webp` (≤720 px) and `desktop-preview.webp` (≤1280 px) for the grid.
 3. Add an entry to `catalog/catalog.json` (copy an existing one; `bytes`, `sha256` and `color` must
    match the file). Set `artist` and `license` honestly.
-4. Run `node tools/check-catalog.mjs`, then open a pull request. Only submit work you made or have the right to share.
+4. Run `node tools/check-catalog.mjs`, then open a pull request.
+
+**What gets merged:** original work you made or have the right to share. No photos or likenesses of
+real people (actors, athletes, musicians), no movie or TV stills, posters or characters, no brand
+logos, and no lyrics or film quotes. Mood is fine: a "Cinema" wallpaper can feel like a film still
+without being one.
 
 To repaint or extend the starter pack: `pip install numpy scipy pillow && python3 tools/paint.py`.
 
@@ -57,7 +57,7 @@ To repaint or extend the starter pack: `pip install numpy scipy pillow && python
 
 ```bash
 sudo apt-get install aapt zipalign apksigner dalvik-exchange android-sdk-platform-23 openjdk-17-jdk nodejs
-bash android/build.sh                 # → dist/Impasto-1.0.0.apk
+bash android/build.sh                 # → dist/Impasto-1.1.0.apk
 ```
 
 Without signing variables the script creates `android/keystore/impasto-local.jks`. **Back it up**:
@@ -70,7 +70,7 @@ Android only installs updates signed with the same key. For releases, set `KEYST
 cd desktop
 npm ci
 npm start           # run it
-npm run dist:win    # → dist/Impasto-Setup-1.0.0.exe and dist/Impasto-1.0.0-portable.exe
+npm run dist:win    # → dist/Impasto-Setup-1.1.0.exe and dist/Impasto-1.1.0-portable.exe
 ```
 
 **Both, automatically:** push a tag like `v1.0.1`. `.github/workflows/release.yml` builds the APK on

@@ -3,6 +3,270 @@
   "version": 1,
   "wallpapers": [
     {
+      "id": "s01",
+      "title": "Unbothered",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "pink",
+        "savage"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s01/phone.png",
+          "preview": "wallpapers/s01/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5874400,
+          "sha256": "2acb9b49cab30c60f609ce4ca8d86e9d09bd58dea0b8c03d7dc3f9d399422591",
+          "color": "#db779d"
+        },
+        "desktop": {
+          "file": "wallpapers/s01/desktop.png",
+          "preview": "wallpapers/s01/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 9951273,
+          "sha256": "ecfd5bb5cc2e58653f08c4338aef611257e16fa375eac1a08a684dd5f25dada1",
+          "color": "#d37498"
+        }
+      }
+    },
+    {
+      "id": "s02",
+      "title": "Not in the Budget",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "red",
+        "savage"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s02/phone.png",
+          "preview": "wallpapers/s02/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5439890,
+          "sha256": "b1eb0776062e8e7b780742445a69f77d5ff08c83c2a3de68d8a5b13c1a9eb60f",
+          "color": "#e0d3c3"
+        },
+        "desktop": {
+          "file": "wallpapers/s02/desktop.png",
+          "preview": "wallpapers/s02/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8694047,
+          "sha256": "6f393abe6b416a1bb0ffab0a25996926e8f2daac56533e7ab0f13b0ccc1261ea",
+          "color": "#decdbf"
+        }
+      }
+    },
+    {
+      "id": "s03",
+      "title": "Not for Everyone",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "red",
+        "bold"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s03/phone.png",
+          "preview": "wallpapers/s03/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 4832476,
+          "sha256": "85196a5d9865c9517bfcafa77cf8297e878aa6a0c6b0ee8527b2e640962c86b1",
+          "color": "#953130"
+        },
+        "desktop": {
+          "file": "wallpapers/s03/desktop.png",
+          "preview": "wallpapers/s03/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8081865,
+          "sha256": "dabb50bb55c4fcf9d41db3fe3b508049a77e0a03dd1112aeebb1066a669ccffa",
+          "color": "#912c2b"
+        }
+      }
+    },
+    {
+      "id": "s04",
+      "title": "High Standards",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "dark",
+        "colorful"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s04/phone.png",
+          "preview": "wallpapers/s04/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 3115204,
+          "sha256": "5d56ee7c06bccbd7816d8713bfe6507745f31500305e840f0074de4609e2f001",
+          "color": "#1d1a1a"
+        },
+        "desktop": {
+          "file": "wallpapers/s04/desktop.png",
+          "preview": "wallpapers/s04/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 5310512,
+          "sha256": "184a00c6b0413a35b32d5349bb0636cddab501e5923936946068847e1844045d",
+          "color": "#201d1d"
+        }
+      }
+    },
+    {
+      "id": "s05",
+      "title": "I Replace",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "serif",
+        "savage"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s05/phone.png",
+          "preview": "wallpapers/s05/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5345149,
+          "sha256": "1d7086c427d09f2cbd8f31778986985417992cf0ab938d1b09beca90f926f3ea",
+          "color": "#d5cfc1"
+        },
+        "desktop": {
+          "file": "wallpapers/s05/desktop.png",
+          "preview": "wallpapers/s05/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 9516166,
+          "sha256": "26262a582d6e20d7b870aecb120d47e0a5652d0016ab260e9a7021754ca262c2",
+          "color": "#d3cec0"
+        }
+      }
+    },
+    {
+      "id": "s06",
+      "title": "Seen.",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "blue",
+        "savage"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/s06/phone.png",
+          "preview": "wallpapers/s06/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5359254,
+          "sha256": "c55dae2fe9cce714dcf9f55653d792157dffefda53a4b1d8a7e6039e1bbf8375",
+          "color": "#dad6cf"
+        },
+        "desktop": {
+          "file": "wallpapers/s06/desktop.png",
+          "preview": "wallpapers/s06/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8918512,
+          "sha256": "5fabd08c856b01fd7ced37f0d87424fa3db5b7c4974ebc34173efe162811eeae",
+          "color": "#d5d2cb"
+        }
+      }
+    },
+    {
+      "id": "c01",
+      "title": "Night Drive",
+      "collection": "Cinema",
+      "tags": [
+        "city",
+        "night",
+        "neon"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/c01/phone.png",
+          "preview": "wallpapers/c01/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 4616366,
+          "sha256": "326c0bd4a9c1af2b435f6a2370db4b2b1ef6127e97da07dc0dc4335c34918518",
+          "color": "#3c1c33"
+        },
+        "desktop": {
+          "file": "wallpapers/c01/desktop.png",
+          "preview": "wallpapers/c01/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 7560800,
+          "sha256": "1c2b966cd69e2f7665be6e17c3dcdcb3530b34532715b406b7073c99a0bd0fe0",
+          "color": "#331a2f"
+        }
+      }
+    },
+    {
+      "id": "c02",
+      "title": "Moon Over the City",
+      "collection": "Cinema",
+      "tags": [
+        "city",
+        "night",
+        "blue"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/c02/phone.png",
+          "preview": "wallpapers/c02/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 4850615,
+          "sha256": "e7b4a857f27dd52df877a12e709c54de5772ac166b7867baaa08889b765cb011",
+          "color": "#1d2d45"
+        },
+        "desktop": {
+          "file": "wallpapers/c02/desktop.png",
+          "preview": "wallpapers/c02/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8117359,
+          "sha256": "a71f4c85627b2bad383a39cf57a0454ebe1284009e65b28001e75b7fc78f32ac",
+          "color": "#1d2e47"
+        }
+      }
+    },
+    {
       "id": "t01",
       "title": "Do It Scared",
       "collection": "Delusional",

@@ -179,7 +179,7 @@ main { min-height: 70vh; padding: 0 var(--gut) 40px; max-width: 1560px; margin: 
 .hero-art:hover::after, .card-media:hover::after { transition: transform 1.1s var(--ease); transform: translateX(70%); }
 
 /* collections */
-.shelves { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.shelves { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .shelf { display: grid; gap: 18px; padding: 22px; border-radius: var(--r-card); background: var(--surface); text-decoration: none; transition: background .2s; }
 .shelf:hover { background: var(--raise); }
 .fan { position: relative; height: 200px; display: block; }

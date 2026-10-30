@@ -1,7 +1,7 @@
 {
   "name": "impasto",
   "productName": "Impasto",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Open-source store for lossless painted wallpapers",
   "main": "main.js",
   "license": "MIT",
@@ -60,5 +60,6 @@
       "artifactName": "Impasto-${version}-portable.exe"
     },
     "publish": null
-  }
+  },
+  "repository": "https://github.com/MohammedAnasAsif/Impasto"
 }

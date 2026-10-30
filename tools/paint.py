@@ -282,7 +282,110 @@ def w_hills(c):
     c.paint_from(t, flow=lambda x, y: 0.1 * np.sin(x / 300), height=8)
 
 
+# ---------- Savage: lines with no apology ----------
+MARKER, FRED, SERIF, ANTON = ("permanent-marker-latin-400-normal.woff", "fredoka-latin-700-normal.woff",
+                              "dm-serif-display-latin-400-normal.woff", "anton-latin-400-normal.woff")
+
+
+def w_unbothered(c):
+    knife_ground(c, "#f07fa8", var=0.05, height=8)
+    c.letters(["unbothered."], SERIF, c.w * (0.155 if is_phone(c) else 0.13), ["#141012"], thick=26, warp=0.5)
+
+
+def w_opinion_budget(c):
+    knife_ground(c, "#f3ead8")
+    lines = ["YOUR OPINION", "WASN\u2019T IN", "THE BUDGET"] if is_phone(c) else ["YOUR OPINION WASN\u2019T", "IN THE BUDGET"]
+    c.letters(lines, MARKER, c.w * (0.12 if is_phone(c) else 0.075), ["#c3261d"], leading=1.05, thick=24)
+
+
+def w_not_for_everyone(c):
+    knife_ground(c, "#8e1414", var=0.06, height=8)
+    lines = ["NOT", "FOR", "EVERY", "ONE"] if is_phone(c) else ["NOT FOR", "EVERYONE"]
+    c.letters(lines, ANTON, c.w * (0.3 if is_phone(c) else 0.14), ["#f4eee2"], leading=0.92, thick=28, warp=0.6)
+
+
+def w_low_battery(c):
+    knife_ground(c, "#151414", var=0.05, height=7)
+    cols = ["#e8492f", "#f3a712", "#2a9d5c", "#2f6fdf", "#8e44c9", "#ec5fa3"]
+    lines = ["low", "battery,", "high", "standards"] if is_phone(c) else ["low battery,", "high standards"]
+    c.letters(lines, FRED, c.w * (0.19 if is_phone(c) else 0.115), cols, leading=0.95, thick=60)
+
+
+def w_replace(c):
+    knife_ground(c, "#e9e2d2", var=0.03)
+    lines = ["I don't", "chase.", "I replace."] if is_phone(c) else ["I don't chase.", "I replace."]
+    c.letters(lines, SERIF, c.w * (0.17 if is_phone(c) else 0.1), ["#1d1b19"], leading=1.0, thick=22)
+
+
+def w_seen(c):
+    knife_ground(c, "#f2ebdc")
+    lines = ["seen.", "not", "replying."] if is_phone(c) else ["seen.", "not replying."]
+    c.letters(lines, MARKER, c.w * (0.18 if is_phone(c) else 0.1), ["#1f4fd1"], leading=1.0, thick=24)
+
+
+# ---------- Cinema: film-still moods, no faces ----------
+
+def w_night_drive(c):
+    t = np.empty((c.h, c.w, 3), np.float32)
+    yy, xx = np.mgrid[0:c.h, 0:c.w].astype(np.float32)
+    hz = c.h * (0.5 if is_phone(c) else 0.45)
+    k = np.clip(yy / hz, 0, 1)[..., None]
+    t[:] = hexrgb("#120b2e") * (1 - k) + hexrgb("#c2386b") * k
+    # skyline on the horizon with lit windows
+    rng = c.rng
+    x = 0
+    while x < c.w:
+        bw = rng.uniform(0.03, 0.08) * c.w
+        bh = rng.uniform(0.04, 0.2) * c.h * (0.7 if is_phone(c) else 1)
+        m = (xx >= x) & (xx < x + bw) & (yy > hz - bh) & (yy <= hz)
+        t[m] = hexrgb("#1b1030")
+        win = m & (((xx - x) % (0.012 * c.w)) < 0.005 * c.w) & (((yy - hz) % (0.02 * c.h)) < 0.008 * c.h) & (rng.random() > 0.3)
+        t[win & (np.sin(xx * 0.31 + yy * 0.17) > 0.2)] = hexrgb("#ffcf6e")
+        x += bw + rng.uniform(0, 0.01) * c.w
+    road = yy > hz
+    t[road] = hexrgb("#17121f")
+    cx = c.w * 0.5
+    spread = (yy - hz) / (c.h - hz)
+    for side, col in ((-1, "#ff3b2f"), (1, "#fff1c9")):  # tail-lights going, headlights coming
+        lane = cx + side * spread * c.w * 0.28
+        streak = road & (np.abs(xx - lane) < (2 + spread * 0.018 * c.w)) & (np.sin(yy / (6 * c.s) * (1 + spread)) > -0.4)
+        t[streak] = hexrgb(col)
+    centre = road & (np.abs(xx - cx) < 1 + spread * 0.004 * c.w) & ((spread * 40) % 1 < 0.5)
+    t[centre] = hexrgb("#e9d9a0")
+    c.paint_from(t, passes=((0.2, 1.0), (0.1, 1.0), (0.05, 0.5), (0.025, 0.5)), flow=lambda x, y: 0.0, height=7)
+
+
+def w_skyline(c):
+    t = np.empty((c.h, c.w, 3), np.float32)
+    yy, xx = np.mgrid[0:c.h, 0:c.w].astype(np.float32)
+    k = np.clip(yy / c.h, 0, 1)[..., None]
+    t[:] = hexrgb("#0b1b3a") * (1 - k) + hexrgb("#2b5c8f") * k
+    mx, my, mr = c.w * 0.7, c.h * (0.22 if is_phone(c) else 0.28), min(c.w, c.h) * 0.11
+    t[(xx - mx) ** 2 + (yy - my) ** 2 < mr ** 2] = hexrgb("#f6ecd0")
+    rng = c.rng
+    for layer, (col, base) in enumerate([("#1f3a63", 0.6), ("#0a1428", 0.74)]):
+        x = -0.02 * c.w
+        while x < c.w:
+            bw = rng.uniform(0.04, 0.1) * c.w
+            top = c.h * (base - rng.uniform(0.0, 0.22 if layer else 0.15))
+            m = (xx >= x) & (xx < x + bw) & (yy > top)
+            t[m] = hexrgb(col)
+            if layer:
+                win = m & (((xx - x) % (0.016 * c.w)) < 0.007 * c.w) & (((yy - top) % (0.024 * c.h)) < 0.01 * c.h)
+                t[win & (np.sin(xx * 0.013 + yy * 0.021 + x) * np.sin(yy * 0.0037 + x * 0.7) > 0.45)] = hexrgb("#f7c56a")
+            x += bw
+    c.paint_from(t, passes=((0.2, 1.0), (0.1, 1.0), (0.05, 0.5), (0.025, 0.5)), flow=lambda x, y: np.pi / 2 if y > c.h * 0.45 else 0.0, height=7)
+
+
 WALLPAPERS = [
+    dict(id="s01", fn=w_unbothered, title="Unbothered", collection="Savage", tags=["type", "pink", "savage"], seed=31),
+    dict(id="s02", fn=w_opinion_budget, title="Not in the Budget", collection="Savage", tags=["type", "red", "savage"], seed=32),
+    dict(id="s03", fn=w_not_for_everyone, title="Not for Everyone", collection="Savage", tags=["type", "red", "bold"], seed=33),
+    dict(id="s04", fn=w_low_battery, title="High Standards", collection="Savage", tags=["type", "dark", "colorful"], seed=34),
+    dict(id="s05", fn=w_replace, title="I Replace", collection="Savage", tags=["type", "serif", "savage"], seed=35),
+    dict(id="s06", fn=w_seen, title="Seen.", collection="Savage", tags=["type", "blue", "savage"], seed=36),
+    dict(id="c01", fn=w_night_drive, title="Night Drive", collection="Cinema", tags=["city", "night", "neon"], seed=41),
+    dict(id="c02", fn=w_skyline, title="Moon Over the City", collection="Cinema", tags=["city", "night", "blue"], seed=42),
     dict(id="t01", fn=w_do_it_scared, title="Do It Scared", collection="Delusional", tags=["type", "red", "motivation"], seed=11),
     dict(id="t02", fn=w_already_working, title="Already Working", collection="Delusional", tags=["type", "colorful", "playful"], seed=12),
     dict(id="t03", fn=w_stay_delusional, title="Stay Delusional", collection="Delusional", tags=["type", "dark", "gold"], seed=13),

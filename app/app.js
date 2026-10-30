@@ -10,10 +10,12 @@
   const abs = (u) => new URL(u, location.href).href;
 
   const COLLECTIONS = {
+    Savage: 'Lines with no apology.',
     Delusional: 'Loud type for big plans.',
     Quiet: 'Serif type with room to breathe.',
     Painted: 'Scenes laid down in thick oil.',
     Fields: 'Colour you can almost touch.',
+    Cinema: 'Film-still moods. No faces, no spoilers.',
   };
 
   // ---------- persisted state ----------
@@ -110,7 +112,7 @@
 
   // ---------- views ----------
   function viewHome() {
-    const feat = byId('a01') || state.items[0];
+    const feat = byId('s03') || state.items[0];
     const v = vKey(feat, state.device);
     const cols = Object.keys(COLLECTIONS).filter((c) => state.items.some((w) => w.collection === c));
     let list = state.items.filter((w) => state.filter === 'All' || w.collection === state.filter);
