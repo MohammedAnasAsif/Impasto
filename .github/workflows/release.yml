@@ -15,6 +15,11 @@ jobs:
       HAS_KEY: ${{ secrets.ANDROID_KEYSTORE_B64 != '' }}
     steps:
       - uses: actions/checkout@v4
+      - name: Require the release key for tagged builds
+        if: startsWith(github.ref, 'refs/tags/') && env.HAS_KEY != 'true'
+        run: |
+          echo "::error::Add the ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASS and ANDROID_KEY_ALIAS secrets first. A tagged APK signed with a throwaway key could not update installed copies."
+          exit 1
       - name: Install Android build tools (Ubuntu packages, no Gradle)
         run: |
           sudo apt-get update
