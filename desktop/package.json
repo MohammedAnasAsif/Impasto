@@ -1,0 +1,64 @@
+{
+  "name": "impasto",
+  "productName": "Impasto",
+  "version": "1.0.0",
+  "description": "Open-source store for lossless painted wallpapers",
+  "main": "main.js",
+  "license": "MIT",
+  "author": "Impasto contributors",
+  "scripts": {
+    "stage": "node ../tools/stage.mjs www desktop",
+    "start": "npm run stage && electron .",
+    "dist:win": "npm run stage && electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "app.impasto.wallpapers",
+    "productName": "Impasto",
+    "copyright": "Impasto contributors, MIT",
+    "directories": {
+      "output": "../dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "build/icon.png",
+      "www/**/*"
+    ],
+    "compression": "normal",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "artifactName": "Impasto-Setup-${version}.exe",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "Impasto-${version}-portable.exe"
+    },
+    "publish": null
+  }
+}

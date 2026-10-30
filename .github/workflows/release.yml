@@ -1,0 +1,60 @@
+name: Build apps
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    env:
+      HAS_KEY: ${{ secrets.ANDROID_KEYSTORE_B64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Android build tools (Ubuntu packages, no Gradle)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y aapt zipalign apksigner dalvik-exchange android-sdk-platform-23
+      - name: Check catalog
+        run: node tools/check-catalog.mjs
+      - name: Restore release key
+        if: env.HAS_KEY == 'true'
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+        run: echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.jks"
+      - name: Build APK
+        env:
+          KEYSTORE: ${{ env.HAS_KEY == 'true' && format('{0}/release.jks', runner.temp) || '' }}
+          KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        run: bash android/build.sh
+      - uses: actions/upload-artifact@v4
+        with: { name: android, path: dist/*.apk }
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Build installer and portable exe
+        working-directory: desktop
+        run: |
+          npm ci
+          npm run dist:win
+      - uses: actions/upload-artifact@v4
+        with: { name: windows, path: dist/*.exe }
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [android, windows]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: out, merge-multiple: true }
+      - uses: softprops/action-gh-release@v2
+        with: { files: out/* }

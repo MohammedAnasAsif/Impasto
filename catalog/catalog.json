@@ -1,0 +1,336 @@
+{
+  "name": "Impasto Starter Pack",
+  "version": 1,
+  "wallpapers": [
+    {
+      "id": "t01",
+      "title": "Do It Scared",
+      "collection": "Delusional",
+      "tags": [
+        "type",
+        "red",
+        "motivation"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/t01/phone.png",
+          "preview": "wallpapers/t01/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5478108,
+          "sha256": "f03d79a02e63ed95c767e1598175ab60e156726425e42079373e233a10e9e6ae",
+          "color": "#e5d8c9"
+        },
+        "desktop": {
+          "file": "wallpapers/t01/desktop.png",
+          "preview": "wallpapers/t01/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 9028834,
+          "sha256": "e9f0d53ec331d857515073372cc340992493ad83cad1578e7683a0d11c319ebd",
+          "color": "#e0d2c3"
+        }
+      }
+    },
+    {
+      "id": "t02",
+      "title": "Already Working",
+      "collection": "Delusional",
+      "tags": [
+        "type",
+        "colorful",
+        "playful"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/t02/phone.png",
+          "preview": "wallpapers/t02/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5290015,
+          "sha256": "41d5e06e5310cd14ecb5edcf70cd1bcecf313391c039aac30879d0fd4c598876",
+          "color": "#ddd7ce"
+        },
+        "desktop": {
+          "file": "wallpapers/t02/desktop.png",
+          "preview": "wallpapers/t02/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8607707,
+          "sha256": "6993abae387dadff8389134a6df89f568c8c65879f70b68c441f75ad7aeb690c",
+          "color": "#d8d0ca"
+        }
+      }
+    },
+    {
+      "id": "t03",
+      "title": "Stay Delusional",
+      "collection": "Delusional",
+      "tags": [
+        "type",
+        "dark",
+        "gold"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/t03/phone.png",
+          "preview": "wallpapers/t03/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 3052711,
+          "sha256": "5d907a8daf5bd61c7006fcdc061cfe6c2decd9ec4cbe8c0f811f9c839414c790",
+          "color": "#292616"
+        },
+        "desktop": {
+          "file": "wallpapers/t03/desktop.png",
+          "preview": "wallpapers/t03/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 5157061,
+          "sha256": "16f8bb923573e11ac488ed05dabd06dff649ea8f89728a473119f507128693ae",
+          "color": "#272417"
+        }
+      }
+    },
+    {
+      "id": "t04",
+      "title": "Build Quietly",
+      "collection": "Quiet",
+      "tags": [
+        "type",
+        "serif",
+        "neutral"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/t04/phone.png",
+          "preview": "wallpapers/t04/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5229677,
+          "sha256": "870446295610385b50a1346794d41bee981c7cfae3b930ee10b99f617799533e",
+          "color": "#d5d0c6"
+        },
+        "desktop": {
+          "file": "wallpapers/t04/desktop.png",
+          "preview": "wallpapers/t04/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8789555,
+          "sha256": "55ed4dd5f5f9b20b3e86531d3102b371e60c311e4c9f8b186759386392bdb487",
+          "color": "#d3d0c6"
+        }
+      }
+    },
+    {
+      "id": "t05",
+      "title": "Soon.",
+      "collection": "Quiet",
+      "tags": [
+        "type",
+        "serif",
+        "minimal"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/t05/phone.png",
+          "preview": "wallpapers/t05/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5658656,
+          "sha256": "b43bc7c194818e8f44d674306c3df2b629bc36415daa65ef3062dd568a35609f",
+          "color": "#ded7c7"
+        },
+        "desktop": {
+          "file": "wallpapers/t05/desktop.png",
+          "preview": "wallpapers/t05/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8522627,
+          "sha256": "1e3c2a6e695eef3d6311cce66dfabad9767f90f00e8bb69587897050413b59f5",
+          "color": "#dbd5c5"
+        }
+      }
+    },
+    {
+      "id": "a01",
+      "title": "Orange Hour",
+      "collection": "Painted",
+      "tags": [
+        "sunset",
+        "sea",
+        "orange"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/a01/phone.png",
+          "preview": "wallpapers/a01/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5195486,
+          "sha256": "f7ef38c2369c4195b436149c1c8938aeb6963bac68d3800c14eb7c49cb3c30f9",
+          "color": "#9f644c"
+        },
+        "desktop": {
+          "file": "wallpapers/a01/desktop.png",
+          "preview": "wallpapers/a01/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8317862,
+          "sha256": "3665e1c6e8656eb1ea9db6c0999ef5e2c4d46ac5d47e1101ac0a5841570cef37",
+          "color": "#97604d"
+        }
+      }
+    },
+    {
+      "id": "a02",
+      "title": "Low Tide",
+      "collection": "Painted",
+      "tags": [
+        "blue",
+        "abstract",
+        "sea"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/a02/phone.png",
+          "preview": "wallpapers/a02/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5082882,
+          "sha256": "e547dd2ddbed19311e96e88efefef685eb62c755edff5e8fd0c0cdb6bb790b9c",
+          "color": "#6c888b"
+        },
+        "desktop": {
+          "file": "wallpapers/a02/desktop.png",
+          "preview": "wallpapers/a02/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8225120,
+          "sha256": "551e1eda99f9818b69679a1abfbde4c20de7165b9ca84b4182fe49e60a55a042",
+          "color": "#6e898b"
+        }
+      }
+    },
+    {
+      "id": "a03",
+      "title": "Dusk Hills",
+      "collection": "Painted",
+      "tags": [
+        "landscape",
+        "purple",
+        "dusk"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/a03/phone.png",
+          "preview": "wallpapers/a03/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5000641,
+          "sha256": "22d5bd4dc7b27d22962ea8d5e572d8ef5b2b2c4ad716e93cadd6008eb1e391d8",
+          "color": "#9f6e6a"
+        },
+        "desktop": {
+          "file": "wallpapers/a03/desktop.png",
+          "preview": "wallpapers/a03/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 8454275,
+          "sha256": "149124225f618b5649fe30273676d522dfec6001065b0fd12b8016887fb0369b",
+          "color": "#9f6e69"
+        }
+      }
+    },
+    {
+      "id": "a04",
+      "title": "Pistachio",
+      "collection": "Fields",
+      "tags": [
+        "green",
+        "minimal",
+        "abstract"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/a04/phone.png",
+          "preview": "wallpapers/a04/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 5934520,
+          "sha256": "9baea19991198c924860fbf4b1ff8bc6e0218c43bf1ef6420b4b8004308a8422",
+          "color": "#a5b77c"
+        },
+        "desktop": {
+          "file": "wallpapers/a04/desktop.png",
+          "preview": "wallpapers/a04/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 9945937,
+          "sha256": "a72e77fb488cec060158df5536967b7b4ade4a5cf4951662db1f2babc0898f12",
+          "color": "#a8ba7f"
+        }
+      }
+    },
+    {
+      "id": "a05",
+      "title": "Ember",
+      "collection": "Fields",
+      "tags": [
+        "red",
+        "swirl",
+        "abstract"
+      ],
+      "artist": "Impasto",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless)",
+      "variants": {
+        "phone": {
+          "file": "wallpapers/a05/phone.png",
+          "preview": "wallpapers/a05/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 6452732,
+          "sha256": "3422f69221ba16efbd82cd6874f8605387a8d10995cb217c89449d5e74cb5895",
+          "color": "#944420"
+        },
+        "desktop": {
+          "file": "wallpapers/a05/desktop.png",
+          "preview": "wallpapers/a05/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 11206414,
+          "sha256": "850fda9aa814d4a7487ec4a04e1859ad96f5bf847c23268fe1c81816b3d064ba",
+          "color": "#934620"
+        }
+      }
+    }
+  ]
+}

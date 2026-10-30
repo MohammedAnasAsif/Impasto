@@ -1,0 +1,9 @@
+/build/
+/dist/
+desktop/node_modules/
+desktop/www/
+android/keystore/
+.playwright/
+.playwright-cli/
+.taste-skill/
+__pycache__/
