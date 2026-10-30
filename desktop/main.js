@@ -1,5 +1,5 @@
 // Electron shell for Windows: serves the shared store UI from app://impasto and does the OS work.
-const { app, BrowserWindow, protocol, ipcMain, shell, clipboard, nativeImage, nativeTheme, net } = require('electron');
+const { app, BrowserWindow, protocol, ipcMain, shell, clipboard, nativeImage, net, Tray, Menu, powerMonitor } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs/promises');
 const { execFile } = require('node:child_process');
@@ -68,8 +68,81 @@ if (-not [ImpastoW]::SystemParametersInfo(20, 0, $p, 3)) { exit 1 }`;
   });
 }
 
+// ---------- auto-change: a new wallpaper every minute, round robin, kept alive from the tray ----------
+const EVERY = 60_000;
+const rotFile = () => path.join(app.getPath('userData'), 'rotation.json');
+let rot = { enabled: false, index: -1, list: [], flip: 0 };
+let rotTimer = null, nextAt = 0, tray = null, win = null, quitting = false;
+
+async function loadRotation() {
+  try { rot = { ...rot, ...JSON.parse(await fs.readFile(rotFile(), 'utf8')) }; } catch { /* first run */ }
+}
+const saveRotation = () => fs.writeFile(rotFile(), JSON.stringify(rot)).catch(() => {});
+
+async function rotTick() {
+  const n = rot.list.length;
+  if (!n || powerMonitor.getSystemIdleState(60) === 'locked') return; // nobody can see the desktop
+  for (let t = 0; t < Math.min(n, 3); t++) {
+    const i = (rot.index + 1 + t) % n; // after the last one, back to the first
+    try {
+      rot.flip ^= 1; // alternate two files so Windows always sees a changed path
+      const file = path.join(app.getPath('userData'), `auto-${rot.flip}.png`);
+      await fs.writeFile(file, await readWallpaper(rot.list[i].url));
+      await setDesktopWallpaper(file);
+      rot.index = i;
+      break;
+    } catch { /* offline or missing: try the next one */ }
+  }
+  saveRotation();
+}
+
+function rotSchedule() {
+  clearTimeout(rotTimer);
+  if (!rot.enabled) return;
+  nextAt = Date.now() + EVERY;
+  rotTimer = setTimeout(async () => { await rotTick(); rotSchedule(); }, EVERY);
+}
+
+function rotationStatus() {
+  const cur = rot.list[rot.index];
+  return { enabled: rot.enabled, index: rot.index, total: rot.list.length, title: cur ? cur.title : '', next: rot.enabled ? nextAt : 0, exact: true };
+}
+
+async function setRotation(on) {
+  rot.enabled = !!on;
+  await saveRotation();
+  if (process.platform === 'win32') {
+    // start with Windows only while auto-change is on, straight to the tray
+    app.setLoginItemSettings({ openAtLogin: rot.enabled, path: process.env.PORTABLE_EXECUTABLE_FILE || process.execPath, args: ['--background'] });
+  }
+  if (rot.enabled) { showTray(); await rotTick(); rotSchedule(); }
+  else { clearTimeout(rotTimer); if (tray) { tray.destroy(); tray = null; } }
+  return rotationStatus();
+}
+
+function showTray() {
+  if (tray) return;
+  tray = new Tray(nativeImage.createFromPath(path.join(__dirname, 'build', 'icon.png')).resize({ width: 16, height: 16 }));
+  tray.setToolTip('Impasto: changing your wallpaper every minute');
+  tray.setContextMenu(Menu.buildFromTemplate([
+    { label: 'Open Impasto', click: showWindow },
+    { label: 'Next wallpaper', click: async () => { await rotTick(); rotSchedule(); } },
+    { label: 'Stop auto-change', click: () => setRotation(false) },
+    { type: 'separator' },
+    { label: 'Quit', click: () => { quitting = true; app.quit(); } },
+  ]));
+  tray.on('click', showWindow);
+}
+
+function showWindow() {
+  if (!win || win.isDestroyed()) return createWindow();
+  if (win.isMinimized()) win.restore();
+  win.show();
+  win.focus();
+}
+
 function createWindow() {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1440, height: 920, minWidth: 380, minHeight: 600,
     title: 'Impasto',
     backgroundColor: '#090b11',
@@ -80,12 +153,14 @@ function createWindow() {
   win.setMenuBarVisibility(false);
   win.webContents.on('will-navigate', (e, url) => { if (!url.startsWith(ORIGIN)) { e.preventDefault(); if (/^https:\/\//i.test(url)) shell.openExternal(url); } });
   win.webContents.setWindowOpenHandler(({ url }) => { if (/^https:\/\//i.test(url)) shell.openExternal(url); return { action: 'deny' }; });
+  win.on('close', (e) => { if (rot.enabled && !quitting) { e.preventDefault(); win.hide(); } }); // keep changing from the tray
   win.loadURL(ORIGIN + '/index.html');
 }
 
-app.on('second-instance', () => { const w = BrowserWindow.getAllWindows()[0]; if (w) { if (w.isMinimized()) w.restore(); w.focus(); } });
+app.on('second-instance', showWindow);
+app.on('before-quit', () => { quitting = true; });
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   protocol.handle('app', async (req) => {
     const p = localPath(req.url);
     if (!p) return new Response('Not found', { status: 404 });
@@ -104,9 +179,21 @@ app.whenReady().then(() => {
     const f = path.normalize(String(file || ''));
     if (f.startsWith(saveDir() + path.sep)) shell.showItemInFolder(f);
   });
+  ipcMain.handle('rotation-get', () => rotationStatus());
+  ipcMain.handle('rotation-set', (_e, on) => setRotation(on));
+  ipcMain.handle('rotation-list', (_e, list) => {
+    if (!Array.isArray(list)) return;
+    rot.list = list.slice(0, 1000)
+      .filter((x) => x && typeof x.url === 'string' && (localPath(x.url) || /^https:\/\//i.test(x.url)))
+      .map((x) => ({ url: x.url, title: String(x.title || '').slice(0, 80) }));
+    if (rot.index >= rot.list.length) rot.index = -1;
+    saveRotation();
+  });
   ipcMain.handle('open-external', (_e, url) => { if (/^https:\/\//i.test(String(url))) shell.openExternal(url); });
 
-  createWindow();
+  await loadRotation();
+  if (rot.enabled) { showTray(); rotSchedule(); }
+  if (!(rot.enabled && process.argv.includes('--background'))) createWindow();
 });
 
-app.on('window-all-closed', () => app.quit());
+app.on('window-all-closed', () => { if (!rot.enabled) app.quit(); });

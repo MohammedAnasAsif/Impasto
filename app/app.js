@@ -62,6 +62,13 @@
       } catch { /* offline or bad source: the bundled pack still works */ }
     }
     state.items = items;
+    syncRotation();
+  }
+  // every wallpaper this device can set, in store order; the native side loops through it
+  function syncRotation() {
+    if (!N.rotation.supported) return;
+    const v = N.platform === 'android' ? 'phone' : 'desktop';
+    N.rotation.list(state.items.filter((w) => w.variants[v] && fileUrl(w, v)).map((w) => ({ url: fileUrl(w, v), title: w.title })));
   }
   const byId = (id) => state.items.find((w) => w.id === id);
   const variantOf = (w, v) => w.variants[v] || w.variants[v === 'phone' ? 'desktop' : 'phone'];
@@ -352,10 +359,50 @@
     return `<section class="block page-top"><h1>Saved</h1>${list.length ? grid(list) : empty('Nothing saved yet', 'Tap the heart on any wallpaper to keep it here.', '#/', 'Browse wallpapers')}</section>`;
   }
 
+  function autoPanel() {
+    if (!N.rotation.supported) {
+      return `<section class="auto"><div class="auto-text"><h2>Auto-change</h2><p class="muted">A new wallpaper every minute is available in the Android and Windows apps.</p></div></section>`;
+    }
+    return `<section class="auto" id="auto" aria-labelledby="autoTitle">
+      <div class="auto-text">
+        <h2 id="autoTitle">Auto-change</h2>
+        <p class="muted">Sets a new wallpaper every minute, in store order. After the last one it starts again from the first. ${N.platform === 'android' ? 'Pauses while your screen is off.' : 'Keeps running from the tray when you close the window, and starts with Windows while it\'s on.'}</p>
+        <p class="auto-status" id="autoStatus" aria-live="polite">Off</p>
+      </div>
+      <div class="auto-controls">
+        <label class="switch"><input type="checkbox" id="autoToggle"><span class="track" aria-hidden="true"></span><span class="sr">Auto-change wallpaper every minute</span></label>
+        ${N.platform === 'android' ? `<div class="seg auto-which" role="radiogroup" aria-label="Change which screen">${['home', 'lock', 'both'].map((k) => `<button type="button" role="radio" data-which="${k}">${k === 'home' ? 'Home' : k === 'lock' ? 'Lock' : 'Both'}</button>`).join('')}</div>` : ''}
+      </div>
+      <p class="note" id="autoExact" hidden>Changes may arrive a little late. <button class="link" type="button" id="autoAllow">Allow exact timing</button></p>
+    </section>`;
+  }
+
+  let autoTimer;
+  async function refreshAuto(st) {
+    const el = $('#autoStatus');
+    if (!el) return clearInterval(autoTimer);
+    st = st || await N.rotation.get();
+    state.auto = st;
+    $('#autoToggle').checked = !!st.enabled;
+    for (const b of $$('[data-which]')) b.setAttribute('aria-checked', b.dataset.which === (st.which || 'home'));
+    $('#autoExact').hidden = !(st.enabled && st.exact === false);
+    const draw = () => {
+      if (!$('#autoStatus')) return clearInterval(autoTimer);
+      if (!st.enabled) { el.textContent = 'Off'; return; }
+      const left = Math.max(0, Math.round(((st.next || 0) - Date.now()) / 1000));
+      const now = st.index >= 0 && st.title ? `Now: ${st.title} (${st.index + 1} of ${st.total})` : `On · ${st.total} wallpapers in the loop`;
+      el.textContent = `${now} · next in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`;
+      if (left === 0) { clearInterval(autoTimer); setTimeout(() => refreshAuto(), 2500); }
+    };
+    clearInterval(autoTimer);
+    draw();
+    if (st.enabled) autoTimer = setInterval(draw, 1000);
+  }
+
   function viewLibrary() {
     const rows = state.library.map((l) => ({ l, w: byId(l.id) })).filter((r) => r.w && r.w.variants[r.l.v]);
-    if (!rows.length) return `<section class="block page-top"><h1>Library</h1>${empty('No downloads yet', 'Everything you download lands here, ready to set again.', '#/', 'Find a wallpaper')}</section>`;
-    return `<section class="block page-top"><h1>Library</h1><p class="lede">${rows.length} download${rows.length === 1 ? '' : 's'} on this device.</p>
+    if (!rows.length) return `<section class="block page-top"><h1>Library</h1>${autoPanel()}${empty('No downloads yet', 'Everything you download lands here, ready to set again.', '#/', 'Find a wallpaper')}</section>`;
+    return `<section class="block page-top"><h1>Library</h1>${autoPanel()}<p class="lede">${rows.length} download${rows.length === 1 ? '' : 's'} on this device.</p>
       <ul class="lines lib">${rows.map(({ l, w }, i) => `<li class="line" data-i="${i}">
         <a class="thumb ${l.v}" href="#/w/${esc(w.id)}"><img src="${esc(previewUrl(w, l.v))}" alt=""></a>
         <div class="line-text"><b>${esc(w.title)}</b><span class="muted">${l.v === 'phone' ? 'Phone' : 'Desktop'} · ${esc(new Date(l.at).toLocaleDateString())} · ${esc(l.location || '')}</span></div>
@@ -493,6 +540,7 @@
     for (const a of $$('[data-nav]')) a.dataset.nav === nav ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
     if (!route.keepScroll) window.scrollTo(0, 0);
     route.keepScroll = false;
+    if (parts[0] === 'library' && N.rotation.supported) refreshAuto();
     if (parts[0] === 'search') { const i = $('#q2'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
   }
   const rerender = () => { route.keepScroll = true; route(); };
@@ -502,6 +550,8 @@
     const t = e.target.closest('button, a');
     if (!t) return;
     if (t.matches('a[href="#all"]')) { e.preventDefault(); $('#all')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); return; }
+    if (t.dataset.which) { const st = state.auto || {}; refreshAuto(await N.rotation.set(!!st.enabled, t.dataset.which)); return; }
+    if (t.id === 'autoAllow') { N.rotation.allowExact(); return; }
     if (t.dataset.fav) { const on = toggleSave(t.dataset.fav); t.setAttribute('aria-pressed', on); t.setAttribute('aria-label', (on ? 'Remove ' : 'Save ') + byId(t.dataset.fav).title); if (main.dataset.view === 'saved') rerender(); return; }
     if (t.dataset.device) { state.device = t.dataset.device; persist(); updateDeviceSeg(); currentV = null; rerender(); return; }
     if (t.dataset.filter) { state.filter = t.dataset.filter; rerender(); return; }
@@ -525,7 +575,20 @@
       } catch (err) { t.disabled = false; fail(err); }
     }
   });
-  document.addEventListener('change', (e) => {
+  document.addEventListener('change', async (e) => {
+    if (e.target.id === 'autoToggle') {
+      const on = e.target.checked;
+      e.target.disabled = true;
+      try {
+        syncRotation();
+        const st = await N.rotation.set(on, (state.auto && state.auto.which) || 'home');
+        toast(on ? 'Auto-change is on. First wallpaper coming up.' : 'Auto-change is off');
+        await refreshAuto(st);
+        if (on) setTimeout(() => refreshAuto(), 4000); // pick up the first wallpaper's title
+      } catch (err) { e.target.checked = !on; fail(err); }
+      e.target.disabled = false;
+      return;
+    }
     if (e.target.name === 'v') { currentV = e.target.value; rerender(); }
     if (e.target.id === 'sort') { state.sort = e.target.value; rerender(); }
   });

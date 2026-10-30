@@ -11,4 +11,7 @@ contextBridge.exposeInMainWorld('impastoDesktop', {
   copyImage: (url, filename) => call('copy-image', url, filename),
   showInFolder: (file) => call('show-in-folder', file),
   openExternal: (url) => call('open-external', url),
+  rotationGet: () => call('rotation-get'),
+  rotationSet: (on) => call('rotation-set', on),
+  rotationList: (list) => call('rotation-list', list),
 });

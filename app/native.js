@@ -75,6 +75,25 @@
       if (platform === 'android') return android.openExternal(url);
       window.open(url, '_blank', 'noopener');
     },
+    // auto-change: Android and Windows only. Status: { enabled, which, index, total, title, next, exact }
+    rotation: {
+      supported: platform !== 'web',
+      async get() {
+        if (platform === 'android') return JSON.parse(android.rotationGet() || '{}');
+        if (platform === 'windows') return desktop.rotationGet();
+        return { enabled: false };
+      },
+      async set(on, which) {
+        if (platform === 'android') return JSON.parse(android.rotationSet(!!on, which || 'home') || '{}');
+        if (platform === 'windows') return desktop.rotationSet(!!on);
+        return { enabled: false };
+      },
+      list(items) {
+        if (platform === 'android') android.rotationList(JSON.stringify(items));
+        if (platform === 'windows') desktop.rotationList(items);
+      },
+      allowExact() { if (platform === 'android') android.openAlarmSettings(); },
+    },
     setChrome(color, light) { if (platform === 'android' && android.setChrome) android.setChrome(color, !!light); },
   };
 })();

@@ -124,33 +124,8 @@ public class MainActivity extends Activity {
         return "application/octet-stream";
     }
 
-    /** Opens a wallpaper file: bundled asset or remote https PNG, validated before use. */
     private InputStream open(String url) throws IOException {
-        Uri u = Uri.parse(url);
-        if (!"https".equals(u.getScheme())) throw new IOException("Only https sources are allowed");
-        InputStream in;
-        if (HOST.equals(u.getHost())) {
-            String p = u.getPath();
-            if (p == null || p.contains("..")) throw new IOException("Bad path");
-            in = getAssets().open("www" + p);
-        } else {
-            HttpURLConnection c = (HttpURLConnection) new URL(url).openConnection();
-            c.setConnectTimeout(15000);
-            c.setReadTimeout(30000);
-            c.setInstanceFollowRedirects(true);
-            if (c.getResponseCode() != 200) throw new IOException("Download failed (" + c.getResponseCode() + ")");
-            long len = c.getContentLength();
-            if (len > MAX_BYTES) throw new IOException("File is too large");
-            in = c.getInputStream();
-        }
-        in = new BufferedInputStream(in, 1 << 16);
-        in.mark(16);
-        byte[] head = new byte[8];
-        int n = 0;
-        while (n < 8) { int r = in.read(head, n, 8 - n); if (r < 0) break; n += r; }
-        in.reset();
-        for (int i = 0; i < 8; i++) if (n < 8 || head[i] != PNG[i]) { in.close(); throw new IOException("That file isn't a PNG"); }
-        return in;
+        return Rotation.open(this, url);
     }
 
     private static long copy(InputStream in, OutputStream out) throws IOException {
@@ -202,6 +177,33 @@ public class MainActivity extends Activity {
 
     // ---------- the JS bridge ----------
     class Bridge {
+        // ---------- auto-change ----------
+        @JavascriptInterface
+        public String rotationGet() { return Rotation.status(MainActivity.this); }
+
+        @JavascriptInterface
+        public void rotationList(String json) {
+            try { new org.json.JSONArray(json); } catch (Exception e) { return; } // only a valid list replaces the old one
+            Rotation.prefs(MainActivity.this).edit().putString("list", json).apply();
+        }
+
+        @JavascriptInterface
+        public String rotationSet(boolean on, String which) {
+            if (!"home".equals(which) && !"lock".equals(which) && !"both".equals(which)) which = "home";
+            Rotation.set(MainActivity.this, on, which);
+            return Rotation.status(MainActivity.this);
+        }
+
+        @JavascriptInterface
+        public void openAlarmSettings() {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    try { startActivity(new Intent("android.settings.REQUEST_SCHEDULE_EXACT_ALARM", Uri.parse("package:" + getPackageName()))); }
+                    catch (Exception ignored) { }
+                }
+            });
+        }
+
         @JavascriptInterface
         public void save(String id, final String url, final String filename) {
             io.execute(new Job(id) {
@@ -234,12 +236,7 @@ public class MainActivity extends Activity {
         public void setWallpaper(String id, final String url, String filename, final String which) {
             io.execute(new Job(id) {
                 String work() throws Exception {
-                    int flags = "home".equals(which) ? 1 : "lock".equals(which) ? 2 : 3; // FLAG_SYSTEM, FLAG_LOCK
-                    WallpaperManager wm = WallpaperManager.getInstance(MainActivity.this);
-                    // setStream(InputStream, Rect, boolean, int) is API 24; we compile against API 23.
-                    Method m = WallpaperManager.class.getMethod("setStream", InputStream.class, Rect.class, boolean.class, int.class);
-                    InputStream in = open(url);
-                    try { m.invoke(wm, in, null, true, flags); } finally { in.close(); }
+                    Rotation.apply(MainActivity.this, url, which);
                     return "{}";
                 }
             });
