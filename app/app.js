@@ -113,29 +113,49 @@
   }
 
   // ---------- views ----------
+  // three cards rising out of the hero: one from another collection, the featured one, one more
+  function heroCards(feat) {
+    const pick = (c) => state.items.find((w) => w.collection === c && w.id !== feat.id);
+    const left = pick('Savage') || state.items.find((w) => w.id !== feat.id);
+    const right = pick('Cinema') || state.items.find((w) => w.id !== feat.id && w !== left);
+    return [[left.collection, left], ['Featured', feat], [right.collection, right]].filter(([, w]) => w);
+  }
+
   function viewHome() {
     const feat = byId(state.featured) || state.items[0];
-    const v = vKey(feat, state.device);
     // known collections first, then any new ones the catalog brings
     const cols = [...new Set([...Object.keys(COLLECTIONS), ...state.items.map((w) => w.collection)])].filter((c) => c && state.items.some((w) => w.collection === c));
     let list = state.items.filter((w) => state.filter === 'All' || w.collection === state.filter);
     if (state.sort === 'az') list = [...list].sort((a, b) => a.title.localeCompare(b.title));
     if (state.sort === 'new') list = [...list].reverse();
     return `
-    <section class="hero ${v}">
-      <div class="hero-copy">
-        <h1>Thick paint for thin screens.</h1>
-        <p class="lede">Original wallpapers in heavy oil texture, shipped as lossless PNG at your screen's native size. Free and open source.</p>
-        <div class="row"><a class="btn primary" href="#/w/${esc(feat.id)}">${icon('brush')}See ${esc(feat.title)}</a><a class="btn" href="#all">Browse all ${state.items.length}</a></div>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="beam" aria-hidden="true"></div>
+      <div class="hero-in">
+        <h1 id="heroTitle">Thick paint for thin <em>screens.</em></h1>
+        <p class="hero-sub">Painted wallpapers as lossless PNG, at your screen's exact size. Free and open source.</p>
+        <dl class="stats stats-l">
+          <div><dt>Wallpapers</dt><dd>${state.items.length}</dd></div>
+          <div><dt>Compression</dt><dd>0%</dd></div>
+        </dl>
+        <dl class="stats stats-r">
+          <div><dt>Desktop</dt><dd>4K</dd></div>
+          <div><dt>Phone</dt><dd>QHD+</dd></div>
+        </dl>
+        <a class="orb" href="#all"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 20c0-7 6-13 13-13 5 0 9 3 9 7 0 3-2 5-5 5-2 0-3 1-3 3s-2 4-5 4c-5 0-9-2-9-6Z"/><circle cx="12" cy="17" r="2.2"/><circle cx="18" cy="12.5" r="1.8"/></svg><span>Browse</span></a>
       </div>
-      <a class="hero-art" href="#/w/${esc(feat.id)}" style="--bg:${esc(feat.variants[v].color)}">
-        <img src="${esc(previewUrl(feat, v))}" alt="${esc(feat.title)}, painted wallpaper" fetchpriority="high">
-        <span class="hero-tag"><b>${esc(feat.title)}</b><span>Free</span></span>
-      </a>
+      <div class="hero-cards">${heroCards(feat).map(([label, w], i) => {
+        const hv = vKey(w, state.device);
+        return `<a class="hcard ${hv} hc${i}" href="#/w/${esc(w.id)}">
+          <span class="tag">${esc(label)}</span>
+          <span class="hcard-frame"><img src="${esc(previewUrl(w, hv))}" alt="${esc(w.title)}" ${i === 1 ? 'fetchpriority="high"' : 'loading="lazy"'}></span>
+          <span class="hcard-meta"><b>${esc(w.title)}</b><span>Free</span></span>
+        </a>`;
+      }).join('')}</div>
     </section>
 
     <section class="block">
-      <h2>Collections</h2>
+      <h2>The <em>collections</em></h2>
       <div class="shelves">${cols.map((c) => {
         const ws = state.items.filter((w) => w.collection === c);
         return `<a class="shelf" href="#/c/${encodeURIComponent(c)}">
@@ -147,7 +167,7 @@
 
     <section class="block" id="all">
       <div class="block-head">
-        <h2>All wallpapers</h2>
+        <h2>Every <em>wallpaper</em></h2>
         <div class="filters">
           <div class="chips" role="group" aria-label="Filter by collection">${['All', ...cols].map((c) => `<button class="chip" data-filter="${esc(c)}" aria-pressed="${state.filter === c}">${esc(c)}</button>`).join('')}</div>
           <label class="select"><span class="sr">Sort</span><select id="sort">
@@ -164,7 +184,7 @@
 
   function footer() {
     return `<footer class="foot">
-      <p class="foot-name">Impasto</p>
+      <p class="foot-name">Imp<em>asto</em></p>
       <p class="muted">Open source under MIT. Wallpapers in the starter pack are CC0, painted by code in <code>tools/paint.py</code>. ${N.platform === 'web' ? '' : `You are on the ${N.platform === 'android' ? 'Android' : 'Windows'} app, v${esc(cfg.version)}.`}</p>
       <div class="row"><a class="btn" href="#/about">About and sources</a></div>
     </footer>`;
