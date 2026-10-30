@@ -90,11 +90,12 @@ npm start           # run it
 npm run dist:win    # → dist/Impasto-Setup-1.2.0.exe and dist/Impasto-1.2.0-portable.exe
 ```
 
-**Both, automatically:** publish a release on GitHub (Releases → Draft a new release) with a new tag
-like `v1.3.0`. `.github/workflows/release.yml` sets that version everywhere, builds the APK on Ubuntu
-and the installers on Windows, and attaches them plus `SHA256SUMS.txt` to the release (about 15
-minutes). It needs three repository secrets so every APK is signed with the same key:
-`ANDROID_KEYSTORE_B64` (your .jks, base64), `ANDROID_KEYSTORE_PASS` and `ANDROID_KEY_ALIAS`.
+**Both, automatically:** push a tag like `v1.3.0` (or publish a release with that tag on GitHub).
+`.github/workflows/release.yml` sets that version everywhere, builds the APK on Ubuntu and the
+installers on Windows, and publishes them with `SHA256SUMS.txt` as the release, using
+`release-notes/v1.3.0.md` as its description when that file exists (about 15 minutes). It needs three
+repository secrets so every APK is signed with the same key: `ANDROID_KEYSTORE_B64` (your .jks,
+base64), `ANDROID_KEYSTORE_PASS` and `ANDROID_KEY_ALIAS`.
 
 **Try the UI in a browser:** `node tools/stage.mjs build/web && python3 -m http.server -d build/web`.
 

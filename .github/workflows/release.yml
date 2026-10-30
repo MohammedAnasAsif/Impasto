@@ -1,13 +1,20 @@
 name: Build apps
 
-# Publish a release on GitHub with a tag like v1.3.0 and this builds both apps and attaches them.
+# Push a tag like v1.3.0 (or publish a release with one) and this builds both apps and
+# publishes them as that release. Notes come from release-notes/<tag>.md when it exists.
 on:
+  push:
+    tags: ['v*']
   release:
     types: [published]
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:  # a release made on the website fires twice (tag + release); build it once
+  group: build-${{ github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
   android:
@@ -28,7 +35,7 @@ jobs:
       - name: Check catalog
         run: node tools/check-catalog.mjs
       - name: Take the version from the release tag
-        if: github.event_name == 'release'
+        if: github.ref_type == 'tag'
         run: node tools/set-version.mjs "${{ github.ref_name }}"
       - name: Restore release key
         if: env.HAS_KEY == 'true'
@@ -51,7 +58,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - name: Take the version from the release tag
-        if: github.event_name == 'release'
+        if: github.ref_type == 'tag'
         run: node tools/set-version.mjs "${{ github.ref_name }}"
       - name: Build installer and portable exe
         working-directory: desktop
@@ -62,13 +69,21 @@ jobs:
         with: { name: windows, path: dist/*.exe }
 
   release:
-    if: github.event_name == 'release'
+    if: github.ref_type == 'tag'
     needs: [android, windows]
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with: { path: out, merge-multiple: true }
-      - name: Checksums
-        run: cd out && sha256sum * > SHA256SUMS.txt
+      - name: Checksums and notes
+        run: |
+          cd out && sha256sum * > SHA256SUMS.txt && cd ..
+          f="release-notes/${{ github.ref_name }}.md"
+          [ -f "$f" ] || printf 'Impasto %s for Android and Windows.\n' "${{ github.ref_name }}" > "$f"
+          echo "NOTES=$f" >> "$GITHUB_ENV"
       - uses: softprops/action-gh-release@v2
-        with: { files: out/* }
+        with:
+          name: Impasto ${{ github.ref_name }}
+          body_path: ${{ env.NOTES }}
+          files: out/*
