@@ -1,50 +1,79 @@
 name: Build apps
 
-# Push a tag like v1.3.0 (or publish a release with one) and this builds both apps and
-# publishes them as that release. Notes come from release-notes/<tag>.md when it exists.
+# Releases publish themselves: push release-notes/v1.5.0.md (new or edited) to main and this builds
+# the APK and both Windows files, then creates the v1.5.0 tag and release with those notes.
+# A version whose tag already exists is skipped, so edits to old notes never re-release.
+# Manual run: Actions → Build apps → Run workflow, with a version.
 on:
   push:
-    tags: ['v*']
-  release:
-    types: [published]
+    branches: [main]
+    paths: ['release-notes/v*.md']
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release, e.g. v1.5.0 (needs release-notes/<version>.md)'
+        required: true
 
 permissions:
   contents: write
 
-concurrency:  # a release made on the website fires twice (tag + release); build it once
-  group: build-${{ github.ref_name }}
-  cancel-in-progress: true
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
-  android:
+  prepare:
     runs-on: ubuntu-24.04
-    env:
-      HAS_KEY: ${{ secrets.ANDROID_KEYSTORE_B64 != '' }}
+    outputs:
+      tag: ${{ steps.v.outputs.tag }}
     steps:
       - uses: actions/checkout@v4
-      - name: Require the release key for tagged builds
-        if: startsWith(github.ref, 'refs/tags/') && env.HAS_KEY != 'true'
+        with: { fetch-depth: 0 }
+      - id: v
+        env:
+          INPUT: ${{ github.event.inputs.version }}
+          BEFORE: ${{ github.event.before }}
         run: |
-          echo "::error::Add the ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASS and ANDROID_KEY_ALIAS secrets first. A tagged APK signed with a throwaway key could not update installed copies."
-          exit 1
+          if [ -n "$INPUT" ]; then
+            tag="$INPUT"
+          else
+            if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then range="HEAD~1..HEAD"; else range="$BEFORE..HEAD"; fi
+            tag=$(git diff --name-only --diff-filter=AM $range -- 'release-notes/v*.md' | sed -n 's#^release-notes/\(v[0-9]*\.[0-9]*\.[0-9]*\)\.md$#\1#p' | sort -V | tail -1)
+          fi
+          if ! echo "$tag" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then echo "No release version in this push."; exit 0; fi
+          if [ ! -f "release-notes/$tag.md" ]; then echo "::error::release-notes/$tag.md is missing"; exit 1; fi
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null; then echo "$tag is already released, skipping."; exit 0; fi
+          echo "Releasing $tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+  android:
+    needs: prepare
+    if: needs.prepare.outputs.tag != ''
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require the release key
+        env: { HAS_KEY: "${{ secrets.ANDROID_KEYSTORE_B64 != '' }}" }
+        run: |
+          if [ "$HAS_KEY" != "true" ]; then
+            echo "::error::Add the ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASS and ANDROID_KEY_ALIAS secrets. An APK signed with a different key can't update installed copies."
+            exit 1
+          fi
       - name: Install Android build tools (Ubuntu packages, no Gradle)
         run: |
           sudo apt-get update
           sudo apt-get install -y aapt zipalign apksigner dalvik-exchange android-sdk-platform-23
       - name: Check catalog
         run: node tools/check-catalog.mjs
-      - name: Take the version from the release tag
-        if: github.ref_type == 'tag'
-        run: node tools/set-version.mjs "${{ github.ref_name }}"
+      - name: Set the version
+        run: node tools/set-version.mjs "${{ needs.prepare.outputs.tag }}"
       - name: Restore release key
-        if: env.HAS_KEY == 'true'
         env:
           KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
         run: echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.jks"
       - name: Build APK
         env:
-          KEYSTORE: ${{ env.HAS_KEY == 'true' && format('{0}/release.jks', runner.temp) || '' }}
+          KEYSTORE: ${{ runner.temp }}/release.jks
           KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASS }}
           KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
         run: bash android/build.sh
@@ -52,14 +81,15 @@ jobs:
         with: { name: android, path: dist/*.apk }
 
   windows:
+    needs: prepare
+    if: needs.prepare.outputs.tag != ''
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - name: Take the version from the release tag
-        if: github.ref_type == 'tag'
-        run: node tools/set-version.mjs "${{ github.ref_name }}"
+      - name: Set the version
+        run: node tools/set-version.mjs "${{ needs.prepare.outputs.tag }}"
       - name: Build installer and portable exe
         working-directory: desktop
         run: |
@@ -69,21 +99,19 @@ jobs:
         with: { name: windows, path: dist/*.exe }
 
   release:
-    if: github.ref_type == 'tag'
-    needs: [android, windows]
+    needs: [prepare, android, windows]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with: { path: out, merge-multiple: true }
-      - name: Checksums and notes
-        run: |
-          cd out && sha256sum * > SHA256SUMS.txt && cd ..
-          f="release-notes/${{ github.ref_name }}.md"
-          [ -f "$f" ] || printf 'Impasto %s for Android and Windows.\n' "${{ github.ref_name }}" > "$f"
-          echo "NOTES=$f" >> "$GITHUB_ENV"
+      - name: Checksums
+        run: cd out && sha256sum * > SHA256SUMS.txt
       - uses: softprops/action-gh-release@v2
         with:
-          name: Impasto ${{ github.ref_name }}
-          body_path: ${{ env.NOTES }}
+          tag_name: ${{ needs.prepare.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: Impasto ${{ needs.prepare.outputs.tag }}
+          body_path: release-notes/${{ needs.prepare.outputs.tag }}.md
+          make_latest: true
           files: out/*

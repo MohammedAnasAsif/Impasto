@@ -21,10 +21,34 @@ SIZES = {"phone": (1440, 3200), "desktop": (3840, 2160)}
 _sess = None
 
 
-def fit(im, w, h, mode, x_bias):
+def fill_pad(im, w, h, patch):
+    """Extend top and bottom with tiles of a plain-texture patch (x0,y0,x1,y1), feathered into the picture."""
+    sw, sh = im.size
+    th = int(round(sw * h / w))
+    tile = im.crop(patch).resize((sw, patch[3] - patch[1]), Image.LANCZOS)
+    canvas = Image.new("RGB", (sw, th))
+    y, k = 0, 0
+    rng = np.random.default_rng(7)
+    while y < th:  # shift and flip each row so the texture never visibly repeats
+        t = np.roll(np.asarray(tile), int(rng.integers(0, sw)), axis=1)
+        t = Image.fromarray(t[:, ::-1] if rng.random() < .5 else t)
+        canvas.paste(t.transpose(Image.FLIP_TOP_BOTTOM) if k % 2 else t, (0, y))
+        y += tile.height; k += 1
+    top = (th - sh) // 2
+    f = min(80, sh // 8)
+    mask = np.ones((sh, sw), np.float32)
+    ramp = np.linspace(0, 1, f, dtype=np.float32)[:, None]
+    mask[:f] = ramp; mask[-f:] = ramp[::-1]
+    canvas.paste(im, (0, top), Image.fromarray((mask * 255).astype(np.uint8)))
+    return canvas
+
+
+def fit(im, w, h, mode, x_bias, patch=None):
     sw, sh = im.size
     if abs(sw / sh - w / h) < 0.01:
         return im
+    if mode == "fill" and sw / sh > w / h:
+        return fill_pad(im, w, h, patch)
     if mode == "pad" and sw / sh > w / h:  # too wide: extend top and bottom with a mirrored edge
         a = np.asarray(im)
         p = int(round((sw * h / w - sh) / 2))
@@ -38,10 +62,10 @@ def fit(im, w, h, mode, x_bias):
     return im.crop((0, y0, sw, y0 + nh))
 
 
-def make(src, size, mode, x_bias, weights):
+def make(src, size, mode, x_bias, weights, patch=None):
     global _sess
     _sess = _sess or session(weights)
-    im = fit(Image.open(src).convert("RGB"), *size, mode, x_bias)
+    im = fit(Image.open(src).convert("RGB"), *size, mode, x_bias, patch)
     ai = upscale(_sess, im).resize(size, Image.LANCZOS)
     return Image.blend(ai, im.resize(size, Image.LANCZOS), 0.35)
 
@@ -53,7 +77,8 @@ def main():
     ap.add_argument("--tags", default="")
     ap.add_argument("--desktop")
     ap.add_argument("--phone")
-    ap.add_argument("--phone-fit", choices=["crop", "pad"], default="crop")
+    ap.add_argument("--phone-fit", choices=["crop", "pad", "fill"], default="crop")
+    ap.add_argument("--patch", help="fill: x0,y0,x1,y1 of a plain-texture area of the phone source to extend with")
     ap.add_argument("--phone-x", type=float, default=0.5)
     ap.add_argument("--artist", default="Impasto contributors")
     ap.add_argument("--license", default="CC0-1.0")
@@ -67,7 +92,8 @@ def main():
     for v, src in (("desktop", a.desktop), ("phone", a.phone)):
         if not src:
             continue
-        img = make(src, SIZES[v], a.phone_fit if v == "phone" else "crop", a.phone_x if v == "phone" else 0.5, a.weights)
+        patch = tuple(int(n) for n in a.patch.split(",")) if (v == "phone" and a.patch) else None
+        img = make(src, SIZES[v], a.phone_fit if v == "phone" else "crop", a.phone_x if v == "phone" else 0.5, a.weights, patch)
         p = d / f"{v}.png"
         img.save(p, optimize=True)
         prev = img.copy()

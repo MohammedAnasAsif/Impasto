@@ -3,6 +3,147 @@
   "version": 1,
   "wallpapers": [
     {
+      "id": "g08",
+      "title": "Side Hustle",
+      "collection": "Savage",
+      "tags": [
+        "type",
+        "green",
+        "blue",
+        "explicit",
+        "hustle"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g08/desktop.png",
+          "preview": "wallpapers/g08/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 13794404,
+          "sha256": "e5eb7292c8e8730dc4b3275337a681a0e06cd9995b41e37602eac9867a72fc97",
+          "color": "#2a9ab0"
+        },
+        "phone": {
+          "file": "wallpapers/g08/phone.png",
+          "preview": "wallpapers/g08/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 7695607,
+          "sha256": "4817a177697c44e16313bdb1eb3028195171bf9f9d2f88bd18024a45b7f86142",
+          "color": "#1ca3aa"
+        }
+      }
+    },
+    {
+      "id": "g09",
+      "title": "Morning Paper",
+      "collection": "Savage",
+      "tags": [
+        "newspaper",
+        "sunset",
+        "painted",
+        "explicit"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g09/desktop.png",
+          "preview": "wallpapers/g09/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 11803624,
+          "sha256": "d0eeb110dd3b4c48e8cc6bd0592a289b9103ca928393f3aad6e6bb5e79ed1420",
+          "color": "#bb9e9e"
+        },
+        "phone": {
+          "file": "wallpapers/g09/phone.png",
+          "preview": "wallpapers/g09/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 6672036,
+          "sha256": "78255dfae322c8bfff67ff43699b682382185984294de8d400a3f7dd27186568",
+          "color": "#9c8183"
+        }
+      }
+    },
+    {
+      "id": "g10",
+      "title": "Money Printer",
+      "collection": "Delusional",
+      "tags": [
+        "money",
+        "type",
+        "black",
+        "machine"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g10/desktop.png",
+          "preview": "wallpapers/g10/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 10425045,
+          "sha256": "12deb00386433ab10b416b2b23ed56cac0733b58c9926fa620a07b7d2136f436",
+          "color": "#363834"
+        },
+        "phone": {
+          "file": "wallpapers/g10/phone.png",
+          "preview": "wallpapers/g10/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 7507449,
+          "sha256": "17876cc7d411b325610b2395ebba862c30f49f1ed0eb0435a3936df3b8ea48db",
+          "color": "#292b28"
+        }
+      }
+    },
+    {
+      "id": "g11",
+      "title": "Iced Luxury",
+      "collection": "Delusional",
+      "tags": [
+        "coffee",
+        "bag",
+        "brown",
+        "luxury"
+      ],
+      "artist": "Mohammed Anas Asif \u00b7 made with ChatGPT",
+      "license": "CC0-1.0",
+      "format": "PNG (lossless) \u00b7 AI-generated, 4\u00d7 upscaled",
+      "bundle": false,
+      "variants": {
+        "desktop": {
+          "file": "wallpapers/g11/desktop.png",
+          "preview": "wallpapers/g11/desktop-preview.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 13413582,
+          "sha256": "d4d060219e52b6c1c76e76037829d2e4641641e2263b8329793c0d1ee072cd9f",
+          "color": "#5f4631"
+        },
+        "phone": {
+          "file": "wallpapers/g11/phone.png",
+          "preview": "wallpapers/g11/phone-preview.webp",
+          "width": 1440,
+          "height": 3200,
+          "bytes": 7108229,
+          "sha256": "7cdc2640223a70057f68d5c5040e62dfcd18d93d0ffdbfbeb45d08383c19dc09",
+          "color": "#433225"
+        }
+      }
+    },
+    {
       "id": "g06",
       "title": "Money Brain",
       "collection": "Delusional",
@@ -1005,5 +1146,5 @@
       }
     }
   ],
-  "featured": "g06"
+  "featured": "g08"
 }
