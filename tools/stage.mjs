@@ -3,16 +3,17 @@
 //
 //   node tools/stage.mjs <out_dir> phone            # Android
 //   node tools/stage.mjs <out_dir> desktop          # Windows
-//   node tools/stage.mjs <out_dir> phone desktop    # web / everything
+//   node tools/stage.mjs <out_dir> phone desktop    # everything
+//   node tools/stage.mjs <out_dir> none             # website: previews only, full files load from GitHub
 import { cpSync, rmSync, readFileSync, writeFileSync, mkdirSync, statSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const [out, ...variants] = process.argv.slice(2);
-const bundle = new Set(variants.length ? variants : ['phone', 'desktop']);
-if (!out || [...bundle].some((v) => v !== 'phone' && v !== 'desktop')) {
-  console.error('usage: node tools/stage.mjs <out_dir> [phone] [desktop]');
+const bundle = new Set(variants.length ? variants.filter((v) => v !== 'none') : ['phone', 'desktop']);
+if (!out || variants.some((v) => !['phone', 'desktop', 'none'].includes(v))) {
+  console.error('usage: node tools/stage.mjs <out_dir> [phone] [desktop] | none');
   process.exit(1);
 }
 rmSync(out, { recursive: true, force: true });
@@ -31,4 +32,4 @@ for (const w of cat.wallpapers) {
 }
 writeFileSync(join(out, 'catalog', 'catalog.json'), JSON.stringify(cat, null, 1));
 const size = (d) => readdirSync(d, { withFileTypes: true }).reduce((s, e) => s + (e.isDirectory() ? size(join(d, e.name)) : statSync(join(d, e.name)).size), 0);
-console.log(`staged ${out} (${[...bundle].sort().join(', ')}) ${(size(out) / 1e6).toFixed(1)} MB`);
+console.log(`staged ${out} (${[...bundle].sort().join(', ') || 'previews only'}) ${(size(out) / 1e6).toFixed(1)} MB`);

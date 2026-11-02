@@ -26,7 +26,7 @@
   };
   const state = {
     items: [],
-    device: store.get('device', N.platform === 'android' ? 'phone' : N.platform === 'windows' ? 'desktop' : (innerWidth < 720 ? 'phone' : 'desktop')),
+    device: store.get('device', N.platform === 'android' ? 'phone' : N.desktop ? 'desktop' : (innerWidth < 720 ? 'phone' : 'desktop')),
     saved: new Set(store.get('saved', [])),
     bag: store.get('bag', []), // [{id, v}]
     library: store.get('library', []), // [{id, v, location, path, at}]
@@ -81,7 +81,7 @@
     return state.remote ? abs((w._remote ? w._base : state.remote) + x.file) : null;
   }
   const fileName = (w, v) => `impasto-${w.id}-${w.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}-${w.variants[v].width}x${w.variants[v].height}.png`;
-  const settable = (v) => (N.platform === 'android' && v === 'phone') || (N.platform === 'windows' && v === 'desktop');
+  const settable = (v) => (N.platform === 'android' && v === 'phone') || (N.desktop && v === 'desktop');
 
   // ---------- small UI helpers ----------
   const icon = (n) => `<svg class="i" aria-hidden="true"><use href="#i-${n}"/></svg>`;
@@ -237,7 +237,7 @@
   function footer() {
     return `<footer class="foot">
       <p class="foot-name">${CLASSIC ? 'Impasto' : 'Imp<em>asto</em>'}</p>
-      <p class="muted">Open source under MIT. Wallpapers in the starter pack are CC0, painted by code in <code>tools/paint.py</code>. ${N.platform === 'web' ? '' : `You are on the ${N.platform === 'android' ? 'Android' : 'Windows'} app, v${esc(cfg.version)}.`}</p>
+      <p class="muted">Open source under MIT. Wallpapers in the starter pack are CC0, painted by code in <code>tools/paint.py</code>. ${N.platform === 'web' ? '' : `You are on the ${({ android: 'Android', windows: 'Windows', mac: 'Mac' })[N.platform]} app, v${esc(cfg.version)}.`}</p>
       <div class="row"><a class="btn" href="#/about">About and sources</a></div>
     </footer>`;
   }
@@ -287,12 +287,13 @@
           <fieldset class="variants"><legend>Size</legend>
             ${['phone', 'desktop'].filter((k) => w.variants[k]).map((k) => `<label class="variant"><input type="radio" name="v" value="${k}"${k === v ? ' checked' : ''}><span>${icon(k === 'phone' ? 'phone' : 'monitor')}<b>${k === 'phone' ? 'Phone' : 'Desktop'}</b><small>${w.variants[k].width} × ${w.variants[k].height} · ${mb(w.variants[k].bytes)}</small></span></label>`).join('')}
           </fieldset>
+          ${N.ios && v === 'phone' && url ? `<p class="note">On iPhone: tap Download PNG, choose Save Image, then open it in Photos and tap Share → Use as Wallpaper.</p>` : ''}
           ${url ? '' : `<p class="note">This size isn't bundled in this app. Add a catalog source in <a href="#/about">About</a> to fetch it.</p>`}
           <div class="actions">${primary}</div>
           <div class="row tight">
             <button class="btn" data-act="bag" aria-pressed="${inBag}">${icon(inBag ? 'check' : 'bag')}${inBag ? 'In bag' : 'Add to bag'}</button>
             <button class="btn" data-act="save" aria-pressed="${on}">${icon('heart')}${on ? 'Saved' : 'Save'}</button>
-            <button class="btn" data-act="share" ${url ? '' : 'disabled'}>${icon(N.platform === 'windows' ? 'copy' : 'share')}${N.platform === 'windows' ? 'Copy image' : 'Share'}</button>
+            <button class="btn" data-act="share" ${url ? '' : 'disabled'}>${icon(N.desktop ? 'copy' : 'share')}${N.desktop ? 'Copy image' : 'Share'}</button>
           </div>
           <dl class="specs">
             <div><dt>Resolution</dt><dd>${x.width} × ${x.height}</dd></div>
@@ -331,7 +332,7 @@
             <div class="total"><dt>Total</dt><dd>Free</dd></div>
           </dl>
           <button class="btn primary big wide" id="checkout">${icon('download')}Download all</button>
-          <p class="muted small">Files save to ${N.platform === 'android' ? 'Pictures/Impasto' : N.platform === 'windows' ? 'Pictures\\Impasto' : 'your Downloads folder'}.</p>
+          <p class="muted small">Files save to ${N.platform === 'android' ? 'Pictures/Impasto' : N.platform === 'windows' ? 'Pictures\\Impasto' : N.platform === 'mac' ? 'Pictures/Impasto' : N.ios ? 'Photos' : 'your Downloads folder'}.</p>
         </aside>
       </div>
     </section>`;
@@ -361,12 +362,12 @@
 
   function autoPanel() {
     if (!N.rotation.supported) {
-      return `<section class="auto"><div class="auto-text"><h2>Auto-change</h2><p class="muted">A new wallpaper every minute is available in the Android and Windows apps.</p></div></section>`;
+      return `<section class="auto"><div class="auto-text"><h2>Auto-change</h2><p class="muted">A new wallpaper every minute is available in the Android, Windows and Mac apps.</p></div></section>`;
     }
     return `<section class="auto" id="auto" aria-labelledby="autoTitle">
       <div class="auto-text">
         <h2 id="autoTitle">Auto-change</h2>
-        <p class="muted">Sets a new wallpaper every minute, in store order. After the last one it starts again from the first. ${N.platform === 'android' ? 'Pauses while your screen is off.' : 'Keeps running from the tray when you close the window, and starts with Windows while it\'s on.'}</p>
+        <p class="muted">Sets a new wallpaper every minute, in store order. After the last one it starts again from the first. ${N.platform === 'android' ? 'Pauses while your screen is off.' : N.platform === 'mac' ? 'Keeps running from the menu bar when you close the window, and starts when you log in while it\'s on.' : 'Keeps running from the tray when you close the window, and starts with Windows while it\'s on.'}</p>
         <p class="auto-status" id="autoStatus" aria-live="polite">Off</p>
       </div>
       <div class="auto-controls">
@@ -408,7 +409,7 @@
         <div class="line-text"><b>${esc(w.title)}</b><span class="muted">${l.v === 'phone' ? 'Phone' : 'Desktop'} · ${esc(new Date(l.at).toLocaleDateString())} · ${esc(l.location || '')}</span></div>
         <div class="row tight">
           ${settable(l.v) ? `<button class="btn small" data-lib-set="${i}">${icon('brush')}Set</button>` : ''}
-          ${N.platform === 'windows' && l.path ? `<button class="btn small" data-lib-folder="${i}">${icon('folder')}Show</button>` : ''}
+          ${N.desktop && l.path ? `<button class="btn small" data-lib-folder="${i}">${icon('folder')}Show</button>` : ''}
         </div>
       </li>`).join('')}</ul></section>`;
   }
@@ -455,7 +456,7 @@
     const r = await N.save(url, fileName(w, v));
     state.library = [{ id: w.id, v, location: r.location || '', path: r.path || r.uri || '', at: Date.now() }, ...state.library.filter((l) => !(l.id === w.id && l.v === v))];
     persist();
-    if (!quiet) toast(`Saved to ${r.location || 'your device'}`, N.platform === 'windows' && r.path ? { label: 'Show', run: () => N.showInFolder(r.path) } : null);
+    if (!quiet) toast(`Saved to ${r.location || 'your device'}`, N.desktop && r.path ? { label: 'Show', run: () => N.showInFolder(r.path) } : null);
     return r;
   }
   function askWhich() {

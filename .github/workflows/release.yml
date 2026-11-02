@@ -1,7 +1,7 @@
 name: Build apps
 
 # Releases publish themselves: push release-notes/v1.5.0.md (new or edited) to main and this builds
-# the APK and both Windows files, then creates the v1.5.0 tag and release with those notes.
+# the APK, both Windows files and the Mac DMGs, then creates the v1.5.0 tag and release with those notes.
 # A version whose tag already exists is skipped, so edits to old notes never re-release.
 # Manual run: Actions → Build apps → Run workflow, with a version.
 on:
@@ -98,8 +98,29 @@ jobs:
       - uses: actions/upload-artifact@v4
         with: { name: windows, path: dist/*.exe }
 
+  mac:
+    needs: prepare
+    if: needs.prepare.outputs.tag != ''
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Set the version
+        run: node tools/set-version.mjs "${{ needs.prepare.outputs.tag }}"
+      - name: Build DMGs (Apple Silicon and Intel)
+        working-directory: desktop
+        env: { CSC_IDENTITY_AUTO_DISCOVERY: 'false' }
+        run: |
+          npm ci
+          npm run dist:mac
+      - uses: actions/upload-artifact@v4
+        with: { name: mac, path: dist/*.dmg }
+
   release:
-    needs: [prepare, android, windows]
+    # the Mac build is newer: if it ever fails, still ship Android and Windows
+    needs: [prepare, android, windows, mac]
+    if: always() && needs.android.result == 'success' && needs.windows.result == 'success'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4

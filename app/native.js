@@ -2,7 +2,10 @@
 (function () {
   const android = window.ImpastoAndroid;
   const desktop = window.impastoDesktop;
-  const platform = android ? 'android' : desktop ? 'windows' : 'web';
+  const platform = android ? 'android' : desktop ? (desktop.os === 'darwin' ? 'mac' : 'windows') : 'web';
+  const DESK = platform === 'windows' || platform === 'mac';
+  // iPhone and iPad Safari: files go to Photos through the share sheet, not a download
+  const IOS = platform === 'web' && (/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
 
   // Android answers asynchronously through window.__impastoNative.done(id, ok, json)
   const pending = new Map();
@@ -33,6 +36,13 @@
     const res = await fetch(url);
     if (!res.ok) throw new Error('Download failed (' + res.status + ')');
     const blob = await res.blob();
+    if (IOS && navigator.canShare) {
+      const file = new File([blob], filename, { type: 'image/png' });
+      if (navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file] }); } catch (e) { if (e && e.name === 'AbortError') throw new Error('Cancelled'); throw e; }
+        return { location: 'Photos' };
+      }
+    }
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = filename;
@@ -45,22 +55,24 @@
 
   window.Native = {
     platform,
+    desktop: DESK,
+    ios: IOS,
     canSetWallpaper: platform !== 'web',
     // Returns { location, path? , uri? }
     save(url, filename, onProgress) {
       if (platform === 'android') return callAndroid('save', [url, filename], onProgress);
-      if (platform === 'windows') return desktop.save(url, filename);
+      if (DESK) return desktop.save(url, filename);
       return webDownload(url, filename);
     },
     // which: 'home' | 'lock' | 'both' (Android). Windows sets the desktop.
     setWallpaper(url, filename, which) {
       if (platform === 'android') return callAndroid('setWallpaper', [url, filename, which || 'both']);
-      if (platform === 'windows') return desktop.setWallpaper(url, filename);
+      if (DESK) return desktop.setWallpaper(url, filename);
       return Promise.reject(new Error('Download the file, then set it from your system settings.'));
     },
     async share(url, filename, title, pageUrl) {
       if (platform === 'android') return callAndroid('share', [url, filename, title]);
-      if (platform === 'windows') { await desktop.copyImage(url, filename); return { copied: true }; }
+      if (DESK) { await desktop.copyImage(url, filename); return { copied: true }; }
       if (navigator.canShare) {
         const blob = await (await fetch(url)).blob();
         const file = new File([blob], filename, { type: 'image/png' });
@@ -69,28 +81,28 @@
       await navigator.clipboard.writeText(pageUrl || location.href);
       return { linkCopied: true };
     },
-    showInFolder(path) { if (platform === 'windows') desktop.showInFolder(path); },
+    showInFolder(path) { if (DESK) desktop.showInFolder(path); },
     openExternal(url) {
-      if (platform === 'windows') return desktop.openExternal(url);
+      if (DESK) return desktop.openExternal(url);
       if (platform === 'android') return android.openExternal(url);
       window.open(url, '_blank', 'noopener');
     },
-    // auto-change: Android and Windows only. Status: { enabled, which, index, total, title, next, exact }
+    // auto-change: Android, Windows and Mac. Status: { enabled, which, index, total, title, next, exact }
     rotation: {
       supported: platform !== 'web',
       async get() {
         if (platform === 'android') return JSON.parse(android.rotationGet() || '{}');
-        if (platform === 'windows') return desktop.rotationGet();
+        if (DESK) return desktop.rotationGet();
         return { enabled: false };
       },
       async set(on, which) {
         if (platform === 'android') return JSON.parse(android.rotationSet(!!on, which || 'home') || '{}');
-        if (platform === 'windows') return desktop.rotationSet(!!on);
+        if (DESK) return desktop.rotationSet(!!on);
         return { enabled: false };
       },
       list(items) {
         if (platform === 'android') android.rotationList(JSON.stringify(items));
-        if (platform === 'windows') desktop.rotationList(items);
+        if (DESK) desktop.rotationList(items);
       },
       allowExact() { if (platform === 'android') android.openAlarmSettings(); },
     },

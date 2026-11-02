@@ -1,31 +1,39 @@
-<p align="center"><img src="docs/banner.png" alt="Impasto: thick paint for thin screens. Lossless wallpapers for Android and Windows." width="100%"></p>
+<p align="center"><img src="docs/banner.png" alt="Impasto: thick paint for thin screens. Lossless wallpapers for Android, Windows, Mac and iPhone." width="100%"></p>
 
 # Impasto
 
-An open-source wallpaper store for **Android** and **Windows**. Thick oil-paint wallpapers, shipped as
+An open-source wallpaper store for **Android**, **Windows**, **Mac** and, through the website, **iPhone and iPad**. Thick oil-paint wallpapers, shipped as
 **lossless PNG at each screen's native size**: 1440 × 3200 for phones, 3840 × 2160 for desktops.
 Collections: Savage, Delusional, Quiet, Painted, Fields and Cinema.
 Browse it like a shop, add to bag, check out for free, set it as your wallpaper in one tap.
 
 No accounts, no ads, no tracking, no compression.
 
-**[Download the latest release →](https://github.com/MohammedAnasAsif/Impasto/releases/latest)**
+**[Download the latest release →](https://github.com/MohammedAnasAsif/Impasto/releases/latest)** · **[Open the website (iPhone, iPad, any browser) →](https://mohammedanasasif.github.io/Impasto/)**
 
-| | Android | Windows |
-|---|---|---|
-| File | `Impasto-<version>.apk` | `Impasto-Setup-<version>.exe` (installer) · `Impasto-<version>-portable.exe` |
-| Needs | Android 10 or newer | Windows 10 or 11, 64-bit |
-| Set wallpaper | Home, lock or both | Desktop (Fill) |
-| Saves to | `Pictures/Impasto` | `Pictures\Impasto` |
-| Share | System share sheet | Copies the image to the clipboard |
+| | Android | Windows | Mac | iPhone & iPad |
+|---|---|---|---|---|
+| Get it | `Impasto-<version>.apk` | `Impasto-Setup-<version>.exe` · `Impasto-<version>-portable.exe` | `Impasto-<version>-mac-arm64.dmg` (Apple Silicon) · `-mac-x64.dmg` (Intel) | The website, then Share → Add to Home Screen |
+| Needs | Android 10 or newer | Windows 10 or 11, 64-bit | macOS 11 or newer | Safari on iOS 15 or newer |
+| Set wallpaper | Home, lock or both, one tap | Desktop, one tap | Every desktop, one tap | Save to Photos, then Share → Use as Wallpaper |
+| Auto-change | ✓ | ✓ | ✓ | Not possible on iOS |
+| Saves to | `Pictures/Impasto` | `Pictures\Impasto` | `Pictures/Impasto` | Photos |
+
+**Mac first launch:** the app isn't notarized by Apple (that needs a paid Apple Developer account), so
+macOS blocks the first open. Open it once, then go to System Settings → Privacy & Security and click
+**Open Anyway**. The first time it sets a wallpaper, allow it to control *System Events*.
+
+**Why iPhone gets the website:** iOS gives apps no way to set the wallpaper, and an iPhone app can only
+reach people through the App Store (a paid developer account plus Apple's review). The website does
+everything else, installs to the Home Screen, and saves lossless PNGs straight to Photos.
 
 ## What's inside
 
 ```
 app/        The store UI. One HTML/CSS/JS app, no framework, no build step. Shared by both shells.
 catalog/    catalog.json + wallpapers/<id>/{phone,desktop}.png and their previews.
-android/    A WebView shell in plain Java (~300 lines). Built with aapt + dx, no Gradle.
-desktop/    An Electron shell (~120 lines) packaged with electron-builder.
+android/    A WebView shell in plain Java. Built with aapt + dx, no Gradle.
+desktop/    An Electron shell for Windows and macOS, packaged with electron-builder.
 tools/      paint.py paints the starter pack; stage.mjs assembles what each app bundles.
 ```
 

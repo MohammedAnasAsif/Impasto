@@ -49,11 +49,19 @@ async function save(url, filename) {
   await fs.mkdir(saveDir(), { recursive: true });
   const file = path.join(saveDir(), safeName(filename));
   await fs.writeFile(file, buf);
-  return { location: 'Pictures\\Impasto', path: file };
+  return { location: process.platform === 'win32' ? 'Pictures\\Impasto' : 'Pictures/Impasto', path: file };
 }
 
 function setDesktopWallpaper(file) {
-  if (process.platform !== 'win32') return Promise.reject(new Error('Setting the wallpaper is supported on Windows only'));
+  if (process.platform === 'darwin') {
+    // every desktop on every display; the path is an argument, never part of the script
+    const script = ['on run argv', 'tell application "System Events" to tell every desktop to set picture to (POSIX file (item 1 of argv))', 'end run'];
+    return new Promise((resolve, reject) => {
+      execFile('osascript', [...script.flatMap((l) => ['-e', l]), file], { timeout: 30000 },
+        (err) => (err ? reject(new Error('macOS didn\'t accept the wallpaper. Allow Impasto to control System Events in System Settings → Privacy & Security → Automation.')) : resolve({})));
+    });
+  }
+  if (process.platform !== 'win32') return Promise.reject(new Error('Setting the wallpaper is supported on Windows and macOS'));
   // Path goes in through the environment, never spliced into the script.
   const ps = `
 $p = $env:IMPASTO_WALLPAPER
@@ -114,6 +122,8 @@ async function setRotation(on) {
   if (process.platform === 'win32') {
     // start with Windows only while auto-change is on, straight to the tray
     app.setLoginItemSettings({ openAtLogin: rot.enabled, path: process.env.PORTABLE_EXECUTABLE_FILE || process.execPath, args: ['--background'] });
+  } else if (process.platform === 'darwin') {
+    app.setLoginItemSettings({ openAtLogin: rot.enabled });
   }
   if (rot.enabled) { showTray(); await rotTick(); rotSchedule(); }
   else { clearTimeout(rotTimer); if (tray) { tray.destroy(); tray = null; } }
@@ -122,7 +132,8 @@ async function setRotation(on) {
 
 function showTray() {
   if (tray) return;
-  tray = new Tray(nativeImage.createFromPath(path.join(__dirname, 'build', 'icon.png')).resize({ width: 16, height: 16 }));
+  const px = process.platform === 'darwin' ? 18 : 16;
+  tray = new Tray(nativeImage.createFromPath(path.join(__dirname, 'build', 'icon.png')).resize({ width: px, height: px }));
   tray.setToolTip('Impasto: changing your wallpaper every minute');
   tray.setContextMenu(Menu.buildFromTemplate([
     { label: 'Open Impasto', click: showWindow },
@@ -193,7 +204,9 @@ app.whenReady().then(async () => {
 
   await loadRotation();
   if (rot.enabled) { showTray(); rotSchedule(); }
-  if (!(rot.enabled && process.argv.includes('--background'))) createWindow();
+  const atLogin = process.argv.includes('--background') || (process.platform === 'darwin' && app.getLoginItemSettings().wasOpenedAtLogin);
+  if (!(rot.enabled && atLogin)) createWindow();
 });
 
 app.on('window-all-closed', () => { if (!rot.enabled) app.quit(); });
+app.on('activate', showWindow); // macOS: clicking the Dock icon brings the window back

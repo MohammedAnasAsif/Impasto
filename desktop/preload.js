@@ -6,6 +6,7 @@ const call = (ch, ...a) => ipcRenderer.invoke(ch, ...a).catch((e) => {
 });
 
 contextBridge.exposeInMainWorld('impastoDesktop', {
+  os: process.platform,
   save: (url, filename) => call('save', url, filename),
   setWallpaper: (url, filename) => call('set-wallpaper', url, filename),
   copyImage: (url, filename) => call('copy-image', url, filename),
