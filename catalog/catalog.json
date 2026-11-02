@@ -1,0 +1,1218 @@
+{
+ "name": "Impasto Starter Pack",
+ "version": 1,
+ "wallpapers": [
+  {
+   "id": "g08",
+   "title": "Side Hustle",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "green",
+    "blue",
+    "explicit",
+    "hustle"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g08/desktop.png",
+     "preview": "wallpapers/g08/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 13794404,
+     "sha256": "e5eb7292c8e8730dc4b3275337a681a0e06cd9995b41e37602eac9867a72fc97",
+     "color": "#2a9ab0",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g08/phone.png",
+     "preview": "wallpapers/g08/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 7695607,
+     "sha256": "4817a177697c44e16313bdb1eb3028195171bf9f9d2f88bd18024a45b7f86142",
+     "color": "#1ca3aa",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g09",
+   "title": "Morning Paper",
+   "collection": "Savage",
+   "tags": [
+    "newspaper",
+    "sunset",
+    "painted",
+    "explicit"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g09/desktop.png",
+     "preview": "wallpapers/g09/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 11803624,
+     "sha256": "d0eeb110dd3b4c48e8cc6bd0592a289b9103ca928393f3aad6e6bb5e79ed1420",
+     "color": "#bb9e9e",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g09/phone.png",
+     "preview": "wallpapers/g09/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 6672036,
+     "sha256": "78255dfae322c8bfff67ff43699b682382185984294de8d400a3f7dd27186568",
+     "color": "#9c8183",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g10",
+   "title": "Money Printer",
+   "collection": "Delusional",
+   "tags": [
+    "money",
+    "type",
+    "black",
+    "machine"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g10/desktop.png",
+     "preview": "wallpapers/g10/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 10425045,
+     "sha256": "12deb00386433ab10b416b2b23ed56cac0733b58c9926fa620a07b7d2136f436",
+     "color": "#363834",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g10/phone.png",
+     "preview": "wallpapers/g10/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 7507449,
+     "sha256": "17876cc7d411b325610b2395ebba862c30f49f1ed0eb0435a3936df3b8ea48db",
+     "color": "#292b28",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g11",
+   "title": "Iced Luxury",
+   "collection": "Delusional",
+   "tags": [
+    "coffee",
+    "bag",
+    "brown",
+    "luxury"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g11/desktop.png",
+     "preview": "wallpapers/g11/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 13413582,
+     "sha256": "d4d060219e52b6c1c76e76037829d2e4641641e2263b8329793c0d1ee072cd9f",
+     "color": "#5f4631",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g11/phone.png",
+     "preview": "wallpapers/g11/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 7108229,
+     "sha256": "7cdc2640223a70057f68d5c5040e62dfcd18d93d0ffdbfbeb45d08383c19dc09",
+     "color": "#433225",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g06",
+   "title": "Money Brain",
+   "collection": "Delusional",
+   "tags": [
+    "money",
+    "blue",
+    "surreal"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g06/desktop.png",
+     "preview": "wallpapers/g06/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 11146475,
+     "sha256": "461e8aa0d2e57ffd5d2c02ceb45f2152d4d869c299091fef6073ff2188333128",
+     "color": "#3669a8",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g06/phone.png",
+     "preview": "wallpapers/g06/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 6219575,
+     "sha256": "fd37f294e914b93213545ebdfa0cfe064a1fa9c920952b2b99e6cc8a0f1e2741",
+     "color": "#355e81",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g07",
+   "title": "Hush Money",
+   "collection": "Savage",
+   "tags": [
+    "monkeys",
+    "money",
+    "red",
+    "painted"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g07/desktop.png",
+     "preview": "wallpapers/g07/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 11394220,
+     "sha256": "2b65b25c6ae0975ffaa529346529705ec6ff3cbc4b3444aad6de3c5ac0b161fb",
+     "color": "#bf452c",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g07/phone.png",
+     "preview": "wallpapers/g07/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 6790492,
+     "sha256": "2eb7b637b1836bda26f3be8bf416eb754bedef82dca7ba55f18d83abaaba2493",
+     "color": "#c84128",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g05",
+   "title": "Pay Your Bills",
+   "collection": "Savage",
+   "tags": [
+    "receipt",
+    "type",
+    "black",
+    "explicit"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g05/desktop.png",
+     "preview": "wallpapers/g05/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 9213564,
+     "sha256": "a00c7b97f5f086e88fa71513838ba6a1d982f0b0fc7856a0e756a3498c474742",
+     "color": "#645c54",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g05/phone.png",
+     "preview": "wallpapers/g05/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5531713,
+     "sha256": "cb8b0721cf1cb5e05cbaec89d40f698eb037288ea1f28eb476aa4240ae3dd610",
+     "color": "#2d2925",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g01",
+   "title": "Vitamin Money",
+   "collection": "Delusional",
+   "tags": [
+    "type",
+    "money",
+    "serif"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g01/desktop.png",
+     "preview": "wallpapers/g01/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 9827458,
+     "sha256": "8c7cc43e0eab41f18f3b9ee4cf7d0749434cec0f16304b43eb2c70ecfd8824f6",
+     "color": "#eadbc2",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g01/phone.png",
+     "preview": "wallpapers/g01/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 7158801,
+     "sha256": "72be5eda82fcd010fc0f98d579ea5464fb1b50ad14a8b77c9fddf02199ab58e0",
+     "color": "#edd8b9",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g04",
+   "title": "Supra Fund",
+   "collection": "Delusional",
+   "tags": [
+    "car",
+    "money",
+    "type"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g04/desktop.png",
+     "preview": "wallpapers/g04/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 10040458,
+     "sha256": "356bb8f71785a9b93220e9b4bd3a1903f0b4a383804b66a4ec121512ac74eff0",
+     "color": "#d4c9b8",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g04/phone.png",
+     "preview": "wallpapers/g04/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 6553548,
+     "sha256": "3c5d927ea33fcaf85b4eea436b8a3c8c61276aa2813a5677393371321fd15aab",
+     "color": "#d9cbb7",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g02",
+   "title": "The High Table",
+   "collection": "Cinema",
+   "tags": [
+    "casino",
+    "red",
+    "night",
+    "scene"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g02/desktop.png",
+     "preview": "wallpapers/g02/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8517138,
+     "sha256": "8a5b0197e47f86d0d8a330151e3865ddc5557ccdb6441cb0f699ce3e2b753020",
+     "color": "#411004",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g02/phone.png",
+     "preview": "wallpapers/g02/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5462631,
+     "sha256": "7bf5a2a64a693a46052f9dda90965d1809ed878e23c6de618a0cc148fcef3e09",
+     "color": "#561204",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "g03",
+   "title": "Royal Crest",
+   "collection": "Fields",
+   "tags": [
+    "velvet",
+    "gold",
+    "black",
+    "lion"
+   ],
+   "artist": "Mohammed Anas Asif · made with ChatGPT",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless) · AI-generated, 4× upscaled",
+   "bundle": false,
+   "variants": {
+    "desktop": {
+     "file": "wallpapers/g03/desktop.png",
+     "preview": "wallpapers/g03/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 10336804,
+     "sha256": "5649172ce2fa0bab01403bf64950e4e8f4161f86c9fae0ebc310ab821d50a7e2",
+     "color": "#28201b",
+     "bundled": false
+    },
+    "phone": {
+     "file": "wallpapers/g03/phone.png",
+     "preview": "wallpapers/g03/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5784743,
+     "sha256": "7c3eff14fc336e2e77321de55bc159e901da42e0470bcad014aa6616545ca333",
+     "color": "#241c17",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s01",
+   "title": "Unbothered",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "pink",
+    "savage"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s01/phone.png",
+     "preview": "wallpapers/s01/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5874400,
+     "sha256": "2acb9b49cab30c60f609ce4ca8d86e9d09bd58dea0b8c03d7dc3f9d399422591",
+     "color": "#db779d",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s01/desktop.png",
+     "preview": "wallpapers/s01/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 9951273,
+     "sha256": "ecfd5bb5cc2e58653f08c4338aef611257e16fa375eac1a08a684dd5f25dada1",
+     "color": "#d37498",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s02",
+   "title": "Not in the Budget",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "red",
+    "savage"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s02/phone.png",
+     "preview": "wallpapers/s02/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5439890,
+     "sha256": "b1eb0776062e8e7b780742445a69f77d5ff08c83c2a3de68d8a5b13c1a9eb60f",
+     "color": "#e0d3c3",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s02/desktop.png",
+     "preview": "wallpapers/s02/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8694047,
+     "sha256": "6f393abe6b416a1bb0ffab0a25996926e8f2daac56533e7ab0f13b0ccc1261ea",
+     "color": "#decdbf",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s03",
+   "title": "Not for Everyone",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "red",
+    "bold"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s03/phone.png",
+     "preview": "wallpapers/s03/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 4832476,
+     "sha256": "85196a5d9865c9517bfcafa77cf8297e878aa6a0c6b0ee8527b2e640962c86b1",
+     "color": "#953130",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s03/desktop.png",
+     "preview": "wallpapers/s03/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8081865,
+     "sha256": "dabb50bb55c4fcf9d41db3fe3b508049a77e0a03dd1112aeebb1066a669ccffa",
+     "color": "#912c2b",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s04",
+   "title": "High Standards",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "dark",
+    "colorful"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s04/phone.png",
+     "preview": "wallpapers/s04/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 3115204,
+     "sha256": "5d56ee7c06bccbd7816d8713bfe6507745f31500305e840f0074de4609e2f001",
+     "color": "#1d1a1a",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s04/desktop.png",
+     "preview": "wallpapers/s04/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 5310512,
+     "sha256": "184a00c6b0413a35b32d5349bb0636cddab501e5923936946068847e1844045d",
+     "color": "#201d1d",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s05",
+   "title": "I Replace",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "serif",
+    "savage"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s05/phone.png",
+     "preview": "wallpapers/s05/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5345149,
+     "sha256": "1d7086c427d09f2cbd8f31778986985417992cf0ab938d1b09beca90f926f3ea",
+     "color": "#d5cfc1",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s05/desktop.png",
+     "preview": "wallpapers/s05/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 9516166,
+     "sha256": "26262a582d6e20d7b870aecb120d47e0a5652d0016ab260e9a7021754ca262c2",
+     "color": "#d3cec0",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s06",
+   "title": "Seen.",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "blue",
+    "savage"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s06/phone.png",
+     "preview": "wallpapers/s06/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5359254,
+     "sha256": "c55dae2fe9cce714dcf9f55653d792157dffefda53a4b1d8a7e6039e1bbf8375",
+     "color": "#dad6cf",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s06/desktop.png",
+     "preview": "wallpapers/s06/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8918512,
+     "sha256": "5fabd08c856b01fd7ced37f0d87424fa3db5b7c4974ebc34173efe162811eeae",
+     "color": "#d5d2cb",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s07",
+   "title": "Non-Refundable",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "receipt",
+    "time"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s07/phone.png",
+     "preview": "wallpapers/s07/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 3366699,
+     "sha256": "d0becfcf16f42c8eb67eac6bb11ff690d98a6c12f6ec7846545f2cc5390e123b",
+     "color": "#cfcbc0",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s07/desktop.png",
+     "preview": "wallpapers/s07/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 6401752,
+     "sha256": "9db16db61281efade3f6ec074462a62b5f1df52f62aa1f69841f87abf0dcc1bd",
+     "color": "#c8c3b9",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s08",
+   "title": "Self-Made*",
+   "collection": "Savage",
+   "tags": [
+    "type",
+    "serif",
+    "money"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s08/phone.png",
+     "preview": "wallpapers/s08/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5294460,
+     "sha256": "398b5ea618cd71e62630d92fed23192b256fe819769144141412c39bc59a2c77",
+     "color": "#dbd4c4",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s08/desktop.png",
+     "preview": "wallpapers/s08/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 9067184,
+     "sha256": "6bd13fdc3204734e33a2560401a082bb3bfcf4ab6ca16baa60f041d37ed0a730",
+     "color": "#d8d1c2",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s09",
+   "title": "One Day",
+   "collection": "Savage",
+   "tags": [
+    "car",
+    "red",
+    "money"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s09/phone.png",
+     "preview": "wallpapers/s09/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5582102,
+     "sha256": "7186d7a0ebb7ad645126573c26ad57d3595d0a83504870c51be79858c2af8a65",
+     "color": "#d5cbbf",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s09/desktop.png",
+     "preview": "wallpapers/s09/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 9509446,
+     "sha256": "c579f2c9aab25c6a74a5bd6066bb33dbb4a15639b4f10d5512babe80d395ae88",
+     "color": "#d6cbc0",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "s10",
+   "title": "Forecast: Money",
+   "collection": "Savage",
+   "tags": [
+    "money",
+    "blue",
+    "playful"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/s10/phone.png",
+     "preview": "wallpapers/s10/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 6293004,
+     "sha256": "18fb96c11a768c26106054455958dd49c2c9acb698c5edf69c8e2e629eb0c91d",
+     "color": "#4775b7",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/s10/desktop.png",
+     "preview": "wallpapers/s10/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 11300900,
+     "sha256": "432af321eefc5e2215986844d8259591474401f5d7c6580701adfa49b5d5b7db",
+     "color": "#4b78b6",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "c03",
+   "title": "Corner Office",
+   "collection": "Cinema",
+   "tags": [
+    "suit",
+    "city",
+    "night",
+    "boss"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/c03/phone.png",
+     "preview": "wallpapers/c03/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5461910,
+     "sha256": "7789f578c0b91acf1cdb43040bbd875ac3966885f663295e20f1cf933922ee57",
+     "color": "#433335",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/c03/desktop.png",
+     "preview": "wallpapers/c03/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8788216,
+     "sha256": "0c8adedc96040eb6f15017178057ae5708b0213543db50a39b5e1b115d67a947",
+     "color": "#4c3736",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "c01",
+   "title": "Night Drive",
+   "collection": "Cinema",
+   "tags": [
+    "city",
+    "night",
+    "neon"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/c01/phone.png",
+     "preview": "wallpapers/c01/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 4616366,
+     "sha256": "326c0bd4a9c1af2b435f6a2370db4b2b1ef6127e97da07dc0dc4335c34918518",
+     "color": "#3c1c33",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/c01/desktop.png",
+     "preview": "wallpapers/c01/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 7560800,
+     "sha256": "1c2b966cd69e2f7665be6e17c3dcdcb3530b34532715b406b7073c99a0bd0fe0",
+     "color": "#331a2f",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "c02",
+   "title": "Moon Over the City",
+   "collection": "Cinema",
+   "tags": [
+    "city",
+    "night",
+    "blue"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/c02/phone.png",
+     "preview": "wallpapers/c02/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 4850615,
+     "sha256": "e7b4a857f27dd52df877a12e709c54de5772ac166b7867baaa08889b765cb011",
+     "color": "#1d2d45",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/c02/desktop.png",
+     "preview": "wallpapers/c02/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8117359,
+     "sha256": "a71f4c85627b2bad383a39cf57a0454ebe1284009e65b28001e75b7fc78f32ac",
+     "color": "#1d2e47",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "t01",
+   "title": "Do It Scared",
+   "collection": "Delusional",
+   "tags": [
+    "type",
+    "red",
+    "motivation"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/t01/phone.png",
+     "preview": "wallpapers/t01/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5478108,
+     "sha256": "f03d79a02e63ed95c767e1598175ab60e156726425e42079373e233a10e9e6ae",
+     "color": "#e5d8c9",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/t01/desktop.png",
+     "preview": "wallpapers/t01/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 9028834,
+     "sha256": "e9f0d53ec331d857515073372cc340992493ad83cad1578e7683a0d11c319ebd",
+     "color": "#e0d2c3",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "t02",
+   "title": "Already Working",
+   "collection": "Delusional",
+   "tags": [
+    "type",
+    "colorful",
+    "playful"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/t02/phone.png",
+     "preview": "wallpapers/t02/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5290015,
+     "sha256": "41d5e06e5310cd14ecb5edcf70cd1bcecf313391c039aac30879d0fd4c598876",
+     "color": "#ddd7ce",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/t02/desktop.png",
+     "preview": "wallpapers/t02/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8607707,
+     "sha256": "6993abae387dadff8389134a6df89f568c8c65879f70b68c441f75ad7aeb690c",
+     "color": "#d8d0ca",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "t03",
+   "title": "Stay Delusional",
+   "collection": "Delusional",
+   "tags": [
+    "type",
+    "dark",
+    "gold"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/t03/phone.png",
+     "preview": "wallpapers/t03/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 3052711,
+     "sha256": "5d907a8daf5bd61c7006fcdc061cfe6c2decd9ec4cbe8c0f811f9c839414c790",
+     "color": "#292616",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/t03/desktop.png",
+     "preview": "wallpapers/t03/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 5157061,
+     "sha256": "16f8bb923573e11ac488ed05dabd06dff649ea8f89728a473119f507128693ae",
+     "color": "#272417",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "t04",
+   "title": "Build Quietly",
+   "collection": "Quiet",
+   "tags": [
+    "type",
+    "serif",
+    "neutral"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/t04/phone.png",
+     "preview": "wallpapers/t04/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5229677,
+     "sha256": "870446295610385b50a1346794d41bee981c7cfae3b930ee10b99f617799533e",
+     "color": "#d5d0c6",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/t04/desktop.png",
+     "preview": "wallpapers/t04/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8789555,
+     "sha256": "55ed4dd5f5f9b20b3e86531d3102b371e60c311e4c9f8b186759386392bdb487",
+     "color": "#d3d0c6",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "t05",
+   "title": "Soon.",
+   "collection": "Quiet",
+   "tags": [
+    "type",
+    "serif",
+    "minimal"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/t05/phone.png",
+     "preview": "wallpapers/t05/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5658656,
+     "sha256": "b43bc7c194818e8f44d674306c3df2b629bc36415daa65ef3062dd568a35609f",
+     "color": "#ded7c7",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/t05/desktop.png",
+     "preview": "wallpapers/t05/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8522627,
+     "sha256": "1e3c2a6e695eef3d6311cce66dfabad9767f90f00e8bb69587897050413b59f5",
+     "color": "#dbd5c5",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "a01",
+   "title": "Orange Hour",
+   "collection": "Painted",
+   "tags": [
+    "sunset",
+    "sea",
+    "orange"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/a01/phone.png",
+     "preview": "wallpapers/a01/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5195486,
+     "sha256": "f7ef38c2369c4195b436149c1c8938aeb6963bac68d3800c14eb7c49cb3c30f9",
+     "color": "#9f644c",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/a01/desktop.png",
+     "preview": "wallpapers/a01/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8317862,
+     "sha256": "3665e1c6e8656eb1ea9db6c0999ef5e2c4d46ac5d47e1101ac0a5841570cef37",
+     "color": "#97604d",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "a02",
+   "title": "Low Tide",
+   "collection": "Painted",
+   "tags": [
+    "blue",
+    "abstract",
+    "sea"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/a02/phone.png",
+     "preview": "wallpapers/a02/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5082882,
+     "sha256": "e547dd2ddbed19311e96e88efefef685eb62c755edff5e8fd0c0cdb6bb790b9c",
+     "color": "#6c888b",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/a02/desktop.png",
+     "preview": "wallpapers/a02/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8225120,
+     "sha256": "551e1eda99f9818b69679a1abfbde4c20de7165b9ca84b4182fe49e60a55a042",
+     "color": "#6e898b",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "a03",
+   "title": "Dusk Hills",
+   "collection": "Painted",
+   "tags": [
+    "landscape",
+    "purple",
+    "dusk"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/a03/phone.png",
+     "preview": "wallpapers/a03/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5000641,
+     "sha256": "22d5bd4dc7b27d22962ea8d5e572d8ef5b2b2c4ad716e93cadd6008eb1e391d8",
+     "color": "#9f6e6a",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/a03/desktop.png",
+     "preview": "wallpapers/a03/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 8454275,
+     "sha256": "149124225f618b5649fe30273676d522dfec6001065b0fd12b8016887fb0369b",
+     "color": "#9f6e69",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "a04",
+   "title": "Pistachio",
+   "collection": "Fields",
+   "tags": [
+    "green",
+    "minimal",
+    "abstract"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/a04/phone.png",
+     "preview": "wallpapers/a04/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 5934520,
+     "sha256": "9baea19991198c924860fbf4b1ff8bc6e0218c43bf1ef6420b4b8004308a8422",
+     "color": "#a5b77c",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/a04/desktop.png",
+     "preview": "wallpapers/a04/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 9945937,
+     "sha256": "a72e77fb488cec060158df5536967b7b4ade4a5cf4951662db1f2babc0898f12",
+     "color": "#a8ba7f",
+     "bundled": false
+    }
+   }
+  },
+  {
+   "id": "a05",
+   "title": "Ember",
+   "collection": "Fields",
+   "tags": [
+    "red",
+    "swirl",
+    "abstract"
+   ],
+   "artist": "Impasto",
+   "license": "CC0-1.0",
+   "format": "PNG (lossless)",
+   "variants": {
+    "phone": {
+     "file": "wallpapers/a05/phone.png",
+     "preview": "wallpapers/a05/phone-preview.webp",
+     "width": 1440,
+     "height": 3200,
+     "bytes": 6452732,
+     "sha256": "3422f69221ba16efbd82cd6874f8605387a8d10995cb217c89449d5e74cb5895",
+     "color": "#944420",
+     "bundled": false
+    },
+    "desktop": {
+     "file": "wallpapers/a05/desktop.png",
+     "preview": "wallpapers/a05/desktop-preview.webp",
+     "width": 3840,
+     "height": 2160,
+     "bytes": 11206414,
+     "sha256": "850fda9aa814d4a7487ec4a04e1859ad96f5bf847c23268fe1c81816b3d064ba",
+     "color": "#934620",
+     "bundled": false
+    }
+   }
+  }
+ ],
+ "featured": "g08"
+}
